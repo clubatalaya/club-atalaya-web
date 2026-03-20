@@ -32,18 +32,28 @@
    1. VARIABLES Y CONFIGURACIÓN GLOBAL
    ════════════════════════════════════════════════════════ */
 :root {
-  /* Colores corporativos principales */
-  --color-rojo:       #C8102E;   /* Rojo salesiano (Pantone 1797) */
-  --color-rojo-oscuro:#a00d25;   /* Rojo más oscuro para hovers */
-  --color-azul-marino:#1a1a2e;   /* Azul marino oscuro del club */
-  --color-azul-medio: #2a2a4e;   /* Azul medio para degradados */
+  /* ── Colores extraídos del logotipo del Club Atalaya ── */
+  --color-turquesa:   #27a49b;   /* Verde-agua · color dominante del logo */
+  --color-turquesa-oscuro: #1d7d76; /* Turquesa oscuro para hovers */
+  --color-naranja:    #efa72e;   /* Naranja-amarillo · esfera central */
+  --color-verde:      #b4cc3f;   /* Verde-lima · arco exterior */
+  --color-magenta:    #c03089;   /* Magenta · arco inferior */
 
-  /* Colores neutros */
+  /* ── Colores institucionales Salesianos ── */
+  --color-rojo:       #C8102E;   /* Rojo salesiano (Pantone 1797) · acento institucional */
+  --color-rojo-oscuro:#a00d25;   /* Rojo oscuro para hovers */
+
+  /* ── Colores de estructura ── */
+  --color-azul-marino:#2a2a2a;   /* Gris muy oscuro · acompaña al gris del texto del logo */
+  --color-azul-medio: #3a3a3a;   /* Gris medio para degradados */
+  --color-texto-logo: #4e4e4e;   /* Gris exacto del texto "club atalaya" en el logo */
+
+  /* ── Colores neutros ── */
   --color-blanco:     #ffffff;
   --color-gris-claro: #f7f7f7;
   --color-gris-medio: #e8e8e8;
   --color-gris-texto: #555555;
-  --color-texto:      #1a1a2e;
+  --color-texto:      #2a2a2a;
 
   /* Tipografías */
   --fuente-titulos:   'Raleway', sans-serif;
@@ -158,8 +168,8 @@ address {
   position: sticky;       /* Se queda fija al hacer scroll */
   top: 0;
   z-index: 100;
-  background: var(--color-azul-marino);
-  border-bottom: 3px solid var(--color-rojo);
+  background: var(--color-azul-marino);  /* Gris muy oscuro, coherente con el logo */
+  border-bottom: 3px solid var(--color-turquesa);  /* Turquesa del logo como acento */
   box-shadow: 0 2px 12px rgba(0,0,0,0.25);
 }
 
@@ -311,8 +321,8 @@ address {
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(26,26,46,0.88) 0%,
-    rgba(26,26,46,0.65) 100%
+    rgba(42,42,42,0.88) 0%,
+    rgba(39,164,155,0.25) 100%   /* toque turquesa del logo en el degradado */
   );
   display: flex;
   align-items: center;
@@ -330,7 +340,7 @@ address {
 /* Etiqueta pequeña sobre el título */
 .hero-etiqueta {
   display: inline-block;
-  background: var(--color-rojo);
+  background: var(--color-turquesa);
   color: white;
   font-size: 0.72rem;
   font-weight: 700;
@@ -362,7 +372,7 @@ address {
 /* Botón de llamada a la acción del hero */
 .hero-boton {
   display: inline-block;
-  background: var(--color-rojo);
+  background: var(--color-turquesa);
   color: white;
   font-family: var(--fuente-titulos);
   font-weight: 700;
@@ -376,7 +386,7 @@ address {
 }
 
 .hero-boton:hover {
-  background: var(--color-rojo-oscuro);
+  background: var(--color-turquesa-oscuro);
   transform: translateY(-2px);
   text-decoration: none;
 }
@@ -394,7 +404,7 @@ address {
   background: var(--color-gris-claro);
 }
 
-/* Título estándar de sección con barra roja a la izquierda */
+/* Título estándar de sección con barra turquesa a la izquierda */
 .seccion-titulo {
   font-family: var(--fuente-titulos);
   font-weight: 900;
@@ -402,7 +412,7 @@ address {
   color: var(--color-azul-marino);
   margin-bottom: 10px;
   padding-left: 16px;
-  border-left: 4px solid var(--color-rojo);
+  border-left: 4px solid var(--color-turquesa);
 }
 
 /* Subtítulo descriptivo bajo el título de sección */
@@ -444,7 +454,7 @@ address {
   display: flex;
   align-items: center;
   gap: 14px;
-  border-bottom: 3px solid var(--color-rojo);
+  border-bottom: 3px solid var(--color-turquesa);
 }
 
 .seccion-card-logo-enlace img,
@@ -546,8 +556,8 @@ address {
 .bosconecta-banda {
   background: linear-gradient(135deg, var(--color-azul-marino) 0%, var(--color-azul-medio) 100%);
   padding: 36px 0;
-  border-top: 3px solid var(--color-rojo);
-  border-bottom: 3px solid var(--color-rojo);
+  border-top: 3px solid var(--color-turquesa);
+  border-bottom: 3px solid var(--color-turquesa);
 }
 
 .bosconecta-contenido {
@@ -609,7 +619,7 @@ address {
 .bosconecta-boton {
   margin-left: auto;
   display: inline-block;
-  background: var(--color-rojo);
+  background: var(--color-turquesa);
   color: white;
   font-family: var(--fuente-titulos);
   font-weight: 700;
@@ -624,7 +634,7 @@ address {
 }
 
 .bosconecta-boton:hover {
-  background: var(--color-rojo-oscuro);
+  background: var(--color-turquesa-oscuro);
   transform: translateY(-2px);
   text-decoration: none;
 }
@@ -687,7 +697,7 @@ address {
 /* Botón "Ver documento" */
 .pdf-abrir {
   flex-shrink: 0;
-  background: var(--color-rojo);
+  background: var(--color-turquesa);
   color: white;
   border: none;
   border-radius: 5px;
@@ -703,7 +713,7 @@ address {
 }
 
 .pdf-abrir:hover {
-  background: var(--color-rojo-oscuro);
+  background: var(--color-turquesa-oscuro);
 }
 
 /* Nota de ayuda para el administrador */
@@ -768,7 +778,7 @@ address {
   font-family: var(--fuente-titulos);
   font-weight: 700;
   font-size: 0.9rem;
-  border-bottom: 3px solid var(--color-rojo);
+  border-bottom: 3px solid var(--color-turquesa);
 }
 
 /* Botón X para cerrar el lightbox */

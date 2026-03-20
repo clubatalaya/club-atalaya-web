@@ -123,29 +123,26 @@ document.addEventListener('keydown', function (e) {
    TEXTOS LEGALES COLAPSABLES (LEER MÁS)
    ───────────────────────────────────────────── */
 
-/**
- * toggleLegal(id)
- * Muestra u oculta el bloque de texto legal con el id indicado.
- * También actualiza el texto del botón y su atributo aria-expanded.
- *
- * Uso: onclick="toggleLegal('denuncias')" o toggleLegal('datos')
- */
+/*
+  SOLUCIÓN: usamos clases CSS en vez del atributo "hidden"
+  porque algunos navegadores tratan hidden como !important
+  y el JS no puede sobreescribirlo.
+  El bloque empieza con clase "oculto" y se añade/quita por JS.
+*/
 function toggleLegal(id) {
-  var bloque  = document.getElementById(id);
-  var btnId   = id === 'denuncias' ? 'btnDenuncias' : 'btnDatos';
-  var btn     = document.getElementById(btnId);
+  var bloque = document.getElementById(id);
+  var btnId  = id === 'denuncias' ? 'btnDenuncias' : 'btnDatos';
+  var btn    = document.getElementById(btnId);
   if (!bloque || !btn) return;
 
-  var estaOculto = bloque.hasAttribute('hidden');
+  var estaOculto = bloque.classList.contains('oculto');
 
   if (estaOculto) {
-    // Mostrar el texto
-    bloque.removeAttribute('hidden');
+    bloque.classList.remove('oculto');
     btn.textContent = 'Leer menos −';
     btn.setAttribute('aria-expanded', 'true');
   } else {
-    // Ocultar el texto
-    bloque.setAttribute('hidden', '');
+    bloque.classList.add('oculto');
     btn.textContent = 'Leer más +';
     btn.setAttribute('aria-expanded', 'false');
   }

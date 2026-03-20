@@ -173,36 +173,26 @@
             <h3>Oratorio</h3>
           </div>
 
-          <!-- Cuerpo: intento de embed Instagram, con fallback a imagen estática -->
+          <!-- ═══════════════════════════════════════════════════
+               GALERÍA DE CARTELES – ORATORIO
+               ═══════════════════════════════════════════════════
+               CÓMO ACTUALIZAR:
+               1. Guarda la imagen del cartel como JPG o PNG
+               2. Nómbrala: oratorio-01.jpg, oratorio-02.jpg, etc.
+               3. Súbela a la carpeta: imagenes/secciones/oratorio/
+               4. Añade una línea nueva en la lista de abajo copiando
+                  el modelo: <img src="..." alt="..." />
+               ═══════════════════════════════════════════════════ -->
           <div class="seccion-card-cuerpo">
-
-            <!--
-            INSTAGRAM EMBED
-            Instagram suele bloquear los embeds desde webs externas.
-            Si no carga, se mostrará automáticamente la imagen de respaldo (ver más abajo).
-            Para actualizar la imagen de respaldo:
-            1. Haz una captura de pantalla del highlight de Instagram
-            2. Guárdala como: imagenes/secciones/oratorio-preview.jpg
-            -->
-            <div class="ig-embed-wrapper" id="igOratorio">
-              <blockquote
-                class="instagram-media"
-                data-instgrm-permalink="https://www.instagram.com/stories/highlights/18104798560751812/"
-                data-instgrm-version="14"
-                style="width:100%; min-width:0; max-width:100%;"
-              ></blockquote>
+            <div class="carteles-galeria" id="galeriaOratorio">
+              <img src="imagenes/secciones/oratorio/oratorio-01.jpg" alt="Cartel Oratorio" onerror="this.style.display='none'" />
+              <img src="imagenes/secciones/oratorio/oratorio-02.jpg" alt="Cartel Oratorio" onerror="this.style.display='none'" />
+              <img src="imagenes/secciones/oratorio/oratorio-03.jpg" alt="Cartel Oratorio" onerror="this.style.display='none'" />
             </div>
-
-            <!-- Imagen de respaldo (se muestra si falla el embed) -->
-            <a href="https://www.instagram.com/stories/highlights/18104798560751812/" target="_blank" rel="noopener" class="ig-fallback" id="igOratorioFallback">
-              <!-- EDITAR: sube una captura del highlight y nómbrala "oratorio-preview.jpg" -->
-              <img src="imagenes/secciones/oratorio-preview.jpg" alt="Últimas fotos del Oratorio en Instagram" onerror="this.parentElement.classList.add('ig-fallback-noimg')" />
-              <span class="ig-fallback-texto">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0z"/><path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                Ver en Instagram →
-              </span>
+            <a href="https://www.instagram.com/stories/highlights/18104798560751812/" target="_blank" rel="noopener" class="seccion-ig-enlace">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0z"/><path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              Ver en Instagram →
             </a>
-
           </div><!-- fin .seccion-card-cuerpo -->
         </article>
 
@@ -223,25 +213,25 @@
             <h3>Centro Juvenil</h3>
           </div>
 
+          <!-- ═══════════════════════════════════════════════════
+               GALERÍA DE CARTELES – CENTRO JUVENIL
+               ═══════════════════════════════════════════════════
+               CÓMO ACTUALIZAR:
+               1. Guarda la imagen del cartel como JPG o PNG
+               2. Nómbrala: cj-01.jpg, cj-02.jpg, etc.
+               3. Súbela a la carpeta: imagenes/secciones/centrojuvenil/
+               4. Añade una línea nueva copiando el modelo de abajo
+               ═══════════════════════════════════════════════════ -->
           <div class="seccion-card-cuerpo">
-            <div class="ig-embed-wrapper" id="igCJ">
-              <blockquote
-                class="instagram-media"
-                data-instgrm-permalink="https://www.instagram.com/stories/highlights/17907821784300783/"
-                data-instgrm-version="14"
-                style="width:100%; min-width:0; max-width:100%;"
-              ></blockquote>
+            <div class="carteles-galeria" id="galeriaCJ">
+              <img src="imagenes/secciones/centrojuvenil/cj-01.jpg" alt="Cartel Centro Juvenil" onerror="this.style.display='none'" />
+              <img src="imagenes/secciones/centrojuvenil/cj-02.jpg" alt="Cartel Centro Juvenil" onerror="this.style.display='none'" />
+              <img src="imagenes/secciones/centrojuvenil/cj-03.jpg" alt="Cartel Centro Juvenil" onerror="this.style.display='none'" />
             </div>
-
-            <a href="https://www.instagram.com/stories/highlights/17907821784300783/" target="_blank" rel="noopener" class="ig-fallback" id="igCJFallback">
-              <!-- EDITAR: sube una captura del highlight y nómbrala "centrojuvenil-preview.jpg" -->
-              <img src="imagenes/secciones/centrojuvenil-preview.jpg" alt="Últimas fotos del Centro Juvenil en Instagram" onerror="this.parentElement.classList.add('ig-fallback-noimg')" />
-              <span class="ig-fallback-texto">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0z"/><path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                Ver en Instagram →
-              </span>
+            <a href="https://www.instagram.com/stories/highlights/17907821784300783/" target="_blank" rel="noopener" class="seccion-ig-enlace">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0z"/><path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              Ver en Instagram →
             </a>
-
           </div>
         </article>
 
@@ -519,7 +509,7 @@
       </div>
 
       <!-- Texto completo (oculto por defecto, se expande al hacer clic) -->
-      <div class="legal-texto-completo" id="denuncias" hidden>
+      <div class="legal-texto-completo oculto" id="denuncias">
         <p>
           El canal de denuncias es un elemento clave para promover una cultura ética, de transparencia y libre de conductas de corrupción, fraude o incumplimientos administrativos o penales, de acuerdo con la Ley 2/2023, de 20 de febrero, de protección de informantes.
         </p>
@@ -567,7 +557,7 @@
         <button class="legal-expandir" id="btnDatos" aria-expanded="false" onclick="toggleLegal('datos')">Leer más +</button>
       </div>
 
-      <div class="legal-texto-completo" id="datos" hidden>
+      <div class="legal-texto-completo oculto" id="datos">
         <!--
         EDITAR: ajusta el nombre del responsable, el DPO y demás datos
         si la asociación cuenta con un delegado de protección de datos propio.

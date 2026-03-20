@@ -429,12 +429,11 @@ address {
    ════════════════════════════════════════════════════════ */
 .secciones-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;  /* Dos columnas iguales */
+  grid-template-columns: 1fr 1fr;
   gap: 28px;
   margin-top: 32px;
 }
 
-/* Tarjeta de cada sección */
 .seccion-card {
   border: 1.5px solid var(--color-gris-medio);
   border-radius: var(--radio-borde);
@@ -447,7 +446,6 @@ address {
   box-shadow: var(--sombra-hover);
 }
 
-/* Cabecera de la tarjeta (fondo oscuro con logo y título) */
 .seccion-card-cabecera {
   background: var(--color-azul-marino);
   padding: 16px 20px;
@@ -476,77 +474,72 @@ address {
   letter-spacing: 0.02em;
 }
 
-/* Cuerpo de la tarjeta (zona del embed o imagen) */
+/* Cuerpo de la tarjeta */
 .seccion-card-cuerpo {
   background: #f4f4f8;
-  min-height: 220px;
-  position: relative;
   overflow: hidden;
 }
 
-/* Contenedor del embed de Instagram */
-.ig-embed-wrapper {
-  width: 100%;
-  min-height: 220px;
+/*
+  GALERÍA DE CARTELES
+  Muestra las imágenes en fila horizontal con scroll si hay muchas.
+  Para añadir carteles: sube JPGs a imagenes/secciones/oratorio/ o centrojuvenil/
+  y añade una línea <img> en el HTML.
+*/
+.carteles-galeria {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;           /* scroll horizontal si hay muchos carteles */
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  min-height: 200px;
+  align-items: stretch;
 }
 
-.ig-embed-wrapper .instagram-media {
-  margin: 0 !important;
-  min-width: 0 !important;
-  width: 100% !important;
-  border-radius: 0 !important;
+.carteles-galeria::-webkit-scrollbar {
+  height: 4px;
 }
 
-/* Imagen de respaldo cuando falla el embed */
-.ig-fallback {
-  display: none;  /* Se muestra por JS si falla el embed */
-  width: 100%;
-  text-decoration: none;
-  position: relative;
+.carteles-galeria::-webkit-scrollbar-track {
+  background: var(--color-gris-medio);
 }
 
-.ig-fallback.visible {
+.carteles-galeria::-webkit-scrollbar-thumb {
+  background: var(--color-turquesa);
+  border-radius: 2px;
+}
+
+.carteles-galeria img {
+  flex-shrink: 0;
+  width: 100%;           /* cada imagen ocupa todo el ancho → scroll tipo carrusel */
+  max-width: 100%;
+  height: 240px;
+  object-fit: cover;
+  object-position: top;
+  scroll-snap-align: start;
   display: block;
 }
 
-.ig-fallback img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-/* Estado cuando tampoco hay imagen de respaldo */
-.ig-fallback.ig-fallback-noimg {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 12px;
-  min-height: 220px;
-  background: var(--color-azul-marino);
-}
-
-.ig-fallback-texto {
+/* Enlace a Instagram bajo la galería */
+.seccion-ig-enlace {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: white;
+  gap: 6px;
+  justify-content: center;
+  padding: 10px;
+  background: var(--color-azul-marino);
+  color: rgba(255,255,255,0.8);
+  font-size: 0.82rem;
   font-weight: 700;
-  font-size: 0.9rem;
-  padding: 8px 18px;
-  background: var(--color-rojo);
-  border-radius: 5px;
-  margin: 12px auto;
-  width: fit-content;
-  position: absolute;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: background var(--transicion), color var(--transicion);
 }
 
-.ig-fallback.ig-fallback-noimg .ig-fallback-texto {
-  position: static;
-  transform: none;
+.seccion-ig-enlace:hover {
+  background: var(--color-turquesa);
+  color: white;
+  text-decoration: none;
 }
 
 
@@ -988,7 +981,12 @@ address {
   box-shadow: var(--sombra-tarjeta);
 }
 
-/* Oculto por defecto mediante atributo hidden (gestionado por JS) */
+/* Oculto por defecto mediante clase .oculto (gestionado por JS) */
+.legal-texto-completo.oculto {
+  display: none;
+}
+
+/* Eliminar uso del atributo hidden — ya no se usa */
 .legal-texto-completo[hidden] {
   display: none;
 }

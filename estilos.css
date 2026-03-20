@@ -1,0 +1,1216 @@
+/*
+════════════════════════════════════════════════════════════════
+  HOJA DE ESTILOS – CLUB ATALAYA · SALESIANOS SANTANDER
+  Archivo: css/estilos.css
+════════════════════════════════════════════════════════════════
+
+  ÍNDICE DE SECCIONES:
+  1.  Variables y configuración global
+  2.  Reset y base
+  3.  Header (barra superior)
+  4.  Menú móvil
+  5.  Hero (presentación principal)
+  6.  Bloques de sección genéricos
+  7.  Secciones (Oratorio y Centro Juvenil)
+  8.  Bosconecta
+  9.  Comunicados (PDFs)
+  10. Lightbox PDF
+  11. Redes sociales
+  12. Contacto
+  13. Legal (Canal de Denuncias / Protección de Datos)
+  14. Transparencia y patrocinadores
+  15. Footer
+
+  CÓMO CAMBIAR COLORES:
+  Modifica las variables en la sección 1 (":root").
+  Todos los colores de la web se definen ahí.
+════════════════════════════════════════════════════════════════
+*/
+
+
+/* ════════════════════════════════════════════════════════
+   1. VARIABLES Y CONFIGURACIÓN GLOBAL
+   ════════════════════════════════════════════════════════ */
+:root {
+  /* ── Colores extraídos del logotipo del Club Atalaya ── */
+  --color-turquesa:   #27a49b;   /* Verde-agua · color dominante del logo */
+  --color-turquesa-oscuro: #1d7d76; /* Turquesa oscuro para hovers */
+  --color-naranja:    #efa72e;   /* Naranja-amarillo · esfera central */
+  --color-verde:      #b4cc3f;   /* Verde-lima · arco exterior */
+  --color-magenta:    #c03089;   /* Magenta · arco inferior */
+
+  /* ── Colores institucionales Salesianos ── */
+  --color-rojo:       #C8102E;   /* Rojo salesiano (Pantone 1797) · acento institucional */
+  --color-rojo-oscuro:#a00d25;   /* Rojo oscuro para hovers */
+
+  /* ── Colores de estructura ── */
+  --color-azul-marino:#2a2a2a;   /* Gris muy oscuro · acompaña al gris del texto del logo */
+  --color-azul-medio: #3a3a3a;   /* Gris medio para degradados */
+  --color-texto-logo: #4e4e4e;   /* Gris exacto del texto "club atalaya" en el logo */
+
+  /* ── Colores neutros ── */
+  --color-blanco:     #ffffff;
+  --color-gris-claro: #f7f7f7;
+  --color-gris-medio: #e8e8e8;
+  --color-gris-texto: #555555;
+  --color-texto:      #2a2a2a;
+
+  /* Tipografías */
+  --fuente-titulos:   'Raleway', sans-serif;
+  --fuente-texto:     'Lato', sans-serif;
+
+  /* Espaciados */
+  --espaciado-seccion: 64px;
+  --radio-borde:       10px;
+
+  /* Sombra suave */
+  --sombra-tarjeta: 0 2px 16px rgba(26,26,46,0.10);
+  --sombra-hover:   0 6px 28px rgba(26,26,46,0.18);
+
+  /* Transición estándar */
+  --transicion: 0.22s ease;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   2. RESET Y BASE
+   ════════════════════════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* Desplazamiento suave al hacer clic en el menú */
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--fuente-texto);
+  color: var(--color-texto);
+  background: var(--color-blanco);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Contenedor centrado con ancho máximo */
+.contenedor {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-rojo);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+address {
+  font-style: normal;
+  line-height: 1.7;
+}
+
+/* Ocultar elementos visualmente pero accesibles para lectores de pantalla */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* Placeholder genérico para logos ausentes */
+.logo-placeholder {
+  width: 64px; height: 64px;
+  background: var(--color-rojo);
+  color: white;
+  font-family: var(--fuente-titulos);
+  font-weight: 900;
+  font-size: 20px;
+  border-radius: var(--radio-borde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-placeholder-sm {
+  width: 52px; height: 52px;
+  background: var(--color-rojo);
+  color: white;
+  font-family: var(--fuente-titulos);
+  font-weight: 900;
+  font-size: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   3. HEADER (BARRA SUPERIOR)
+   ════════════════════════════════════════════════════════ */
+.header-principal {
+  position: sticky;       /* Se queda fija al hacer scroll */
+  top: 0;
+  z-index: 100;
+  background: var(--color-azul-marino);  /* Gris muy oscuro, coherente con el logo */
+  border-bottom: 3px solid var(--color-turquesa);  /* Turquesa del logo como acento */
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+
+.header-contenedor {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Logo + nombre del club */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.header-logo img {
+  width: 48px; height: 48px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.nombre-club {
+  display: block;
+  font-family: var(--fuente-titulos);
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: var(--color-blanco);
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+}
+
+.nombre-subtitulo {
+  display: block;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Navegación del header */
+.header-nav {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+}
+
+.header-nav a {
+  color: rgba(255,255,255,0.75);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background var(--transicion), color var(--transicion);
+}
+
+.header-nav a:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--color-blanco);
+  text-decoration: none;
+}
+
+/* Botón hamburguesa (solo visible en móvil) */
+.menu-movil-btn {
+  display: none;       /* Se muestra en pantallas pequeñas (ver @media abajo) */
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  margin-left: auto;
+}
+
+.menu-movil-btn span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--color-blanco);
+  border-radius: 2px;
+  transition: var(--transicion);
+}
+
+
+/* ════════════════════════════════════════════════════════
+   4. MENÚ MÓVIL (desplegable)
+   ════════════════════════════════════════════════════════ */
+.menu-movil {
+  display: none;  /* Oculto por defecto */
+  flex-direction: column;
+  background: var(--color-azul-marino);
+  border-bottom: 2px solid var(--color-rojo);
+  padding: 8px 24px 16px;
+}
+
+.menu-movil.abierto {
+  display: flex;
+}
+
+.menu-movil a {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  text-decoration: none;
+}
+
+.menu-movil a:last-child {
+  border-bottom: none;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   5. HERO (PRESENTACIÓN PRINCIPAL)
+   ════════════════════════════════════════════════════════
+   EDITAR imagen de fondo: sustituye la ruta en "background-image"
+   ════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+
+  /*
+  EDITAR: cambia la ruta de la imagen de fondo aquí.
+  La imagen debe estar en: imagenes/fondos/fondo-hero.jpg
+  */
+  background-image: url('../imagenes/fondos/fondo-hero.jpg');
+  background-size: cover;
+  background-position: center 30%;  /* Un poco hacia arriba para centrar en la gente */
+  background-color: var(--color-azul-marino);
+}
+
+/* Capa oscura semitransparente sobre la imagen de fondo */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(42,42,42,0.88) 0%,
+    rgba(39,164,155,0.25) 100%   /* toque turquesa del logo en el degradado */
+  );
+  display: flex;
+  align-items: center;
+}
+
+.hero-contenido {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+
+/* Etiqueta pequeña sobre el título */
+.hero-etiqueta {
+  display: inline-block;
+  background: var(--color-turquesa);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-family: var(--fuente-titulos);
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.2rem); /* Tamaño adaptable */
+  color: var(--color-blanco);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  max-width: 680px;
+}
+
+.hero p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.85);
+  max-width: 600px;
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+
+/* Botón de llamada a la acción del hero */
+.hero-boton {
+  display: inline-block;
+  background: var(--color-turquesa);
+  color: white;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background var(--transicion), transform var(--transicion);
+}
+
+.hero-boton:hover {
+  background: var(--color-turquesa-oscuro);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   6. BLOQUES DE SECCIÓN GENÉRICOS
+   ════════════════════════════════════════════════════════ */
+.seccion {
+  padding: var(--espaciado-seccion) 0;
+}
+
+/* Fondo alternado claro en secciones pares */
+.seccion-clara {
+  background: var(--color-gris-claro);
+}
+
+/* Título estándar de sección con barra turquesa a la izquierda */
+.seccion-titulo {
+  font-family: var(--fuente-titulos);
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: var(--color-azul-marino);
+  margin-bottom: 10px;
+  padding-left: 16px;
+  border-left: 4px solid var(--color-turquesa);
+}
+
+/* Subtítulo descriptivo bajo el título de sección */
+.seccion-subtitulo {
+  color: var(--color-gris-texto);
+  font-size: 1rem;
+  margin-bottom: 36px;
+  padding-left: 20px;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   7. SECCIONES (ORATORIO Y CENTRO JUVENIL)
+   ════════════════════════════════════════════════════════ */
+.secciones-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* Dos columnas iguales */
+  gap: 28px;
+  margin-top: 32px;
+}
+
+/* Tarjeta de cada sección */
+.seccion-card {
+  border: 1.5px solid var(--color-gris-medio);
+  border-radius: var(--radio-borde);
+  overflow: hidden;
+  box-shadow: var(--sombra-tarjeta);
+  transition: box-shadow var(--transicion);
+}
+
+.seccion-card:hover {
+  box-shadow: var(--sombra-hover);
+}
+
+/* Cabecera de la tarjeta (fondo oscuro con logo y título) */
+.seccion-card-cabecera {
+  background: var(--color-azul-marino);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 3px solid var(--color-turquesa);
+}
+
+.seccion-card-logo-enlace img,
+.seccion-card-logo-enlace .logo-placeholder-sm {
+  border-radius: 8px;
+  transition: opacity var(--transicion);
+}
+
+.seccion-card-logo-enlace:hover img,
+.seccion-card-logo-enlace:hover .logo-placeholder-sm {
+  opacity: 0.8;
+}
+
+.seccion-card-cabecera h3 {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--color-blanco);
+  letter-spacing: 0.02em;
+}
+
+/* Cuerpo de la tarjeta (zona del embed o imagen) */
+.seccion-card-cuerpo {
+  background: #f4f4f8;
+  min-height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Contenedor del embed de Instagram */
+.ig-embed-wrapper {
+  width: 100%;
+  min-height: 220px;
+}
+
+.ig-embed-wrapper .instagram-media {
+  margin: 0 !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  border-radius: 0 !important;
+}
+
+/* Imagen de respaldo cuando falla el embed */
+.ig-fallback {
+  display: none;  /* Se muestra por JS si falla el embed */
+  width: 100%;
+  text-decoration: none;
+  position: relative;
+}
+
+.ig-fallback.visible {
+  display: block;
+}
+
+.ig-fallback img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+/* Estado cuando tampoco hay imagen de respaldo */
+.ig-fallback.ig-fallback-noimg {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 220px;
+  background: var(--color-azul-marino);
+}
+
+.ig-fallback-texto {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 8px 18px;
+  background: var(--color-rojo);
+  border-radius: 5px;
+  margin: 12px auto;
+  width: fit-content;
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ig-fallback.ig-fallback-noimg .ig-fallback-texto {
+  position: static;
+  transform: none;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   8. BOSCONECTA
+   ════════════════════════════════════════════════════════ */
+.bosconecta-banda {
+  background: linear-gradient(135deg, var(--color-azul-marino) 0%, var(--color-azul-medio) 100%);
+  padding: 36px 0;
+  border-top: 3px solid var(--color-turquesa);
+  border-bottom: 3px solid var(--color-turquesa);
+}
+
+.bosconecta-contenido {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* Logo de Bosconecta — ya tiene su propio círculo dorado incorporado */
+.bosconecta-logo-wrapper a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform var(--transicion);
+  flex-shrink: 0;
+  background: transparent;
+}
+
+.bosconecta-logo-wrapper a:hover {
+  transform: scale(1.06);
+}
+
+.bosconecta-logo-wrapper img {
+  width: 60px; height: 60px;
+  object-fit: contain;
+}
+
+.logo-placeholder-bosco {
+  width: 60px; height: 60px;
+  background: var(--color-rojo);
+  color: white;
+  font-family: var(--fuente-titulos);
+  font-weight: 900;
+  font-size: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bosconecta-texto h2 {
+  font-family: var(--fuente-titulos);
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: var(--color-blanco);
+  margin-bottom: 4px;
+}
+
+.bosconecta-texto p {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.9rem;
+}
+
+/* Botón de acceso a Bosconecta */
+.bosconecta-boton {
+  margin-left: auto;
+  display: inline-block;
+  background: var(--color-turquesa);
+  color: white;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--transicion), transform var(--transicion);
+}
+
+.bosconecta-boton:hover {
+  background: var(--color-turquesa-oscuro);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   9. COMUNICADOS (PDFs)
+   ════════════════════════════════════════════════════════ */
+.pdf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  margin-top: 8px;
+}
+
+/* Tarjeta individual de comunicado PDF */
+.pdf-tarjeta {
+  background: var(--color-blanco);
+  border: 1.5px solid var(--color-gris-medio);
+  border-radius: var(--radio-borde);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--sombra-tarjeta);
+  transition: box-shadow var(--transicion), transform var(--transicion);
+}
+
+.pdf-tarjeta:hover {
+  box-shadow: var(--sombra-hover);
+  transform: translateY(-2px);
+}
+
+.pdf-icono {
+  flex-shrink: 0;
+}
+
+.pdf-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.pdf-info h3 {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-azul-marino);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pdf-info p {
+  font-size: 0.82rem;
+  color: var(--color-gris-texto);
+  line-height: 1.4;
+}
+
+/* Botón "Ver documento" */
+.pdf-abrir {
+  flex-shrink: 0;
+  background: var(--color-turquesa);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 14px;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--transicion);
+  white-space: nowrap;
+}
+
+.pdf-abrir:hover {
+  background: var(--color-turquesa-oscuro);
+}
+
+/* Nota de ayuda para el administrador */
+.pdf-nota-admin {
+  margin-top: 24px;
+  padding: 12px 16px;
+  background: #fffbe6;
+  border-left: 4px solid #f0c000;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #665500;
+  line-height: 1.5;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   10. LIGHTBOX PDF (capa que aparece al abrir un PDF)
+   ════════════════════════════════════════════════════════ */
+.pdf-lightbox {
+  display: none;         /* Oculto por defecto */
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdf-lightbox.visible {
+  display: flex;
+}
+
+/* Fondo semitransparente oscuro */
+.pdf-lightbox-fondo {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+}
+
+/* Ventana del lightbox */
+.pdf-lightbox-contenido {
+  position: relative;
+  z-index: 1;
+  background: white;
+  border-radius: var(--radio-borde);
+  overflow: hidden;
+  width: 92vw;
+  max-width: 900px;
+  height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+/* Cabecera del lightbox con título y botón cerrar */
+.pdf-lightbox-cabecera {
+  background: var(--color-azul-marino);
+  color: white;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-bottom: 3px solid var(--color-turquesa);
+}
+
+/* Botón X para cerrar el lightbox */
+.pdf-lightbox-cerrar {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color var(--transicion);
+}
+
+.pdf-lightbox-cerrar:hover {
+  color: var(--color-rojo);
+}
+
+/* El iframe que muestra el PDF */
+#pdfFrame {
+  flex: 1;
+  border: none;
+  width: 100%;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   11. REDES SOCIALES
+   ════════════════════════════════════════════════════════ */
+.redes-seccion {
+  background: var(--color-gris-claro);
+}
+
+/* Cuadrícula de iconos de redes sociales */
+.redes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px 32px;
+  margin-top: 36px;
+}
+
+/* Cada icono de red social */
+.red-social-icono {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: transform var(--transicion);
+}
+
+.red-social-icono:hover {
+  transform: translateY(-4px);
+  text-decoration: none;
+}
+
+/* Círculo coloreado que contiene el icono */
+.rsi-circulo {
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  position: relative;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  transition: box-shadow var(--transicion);
+}
+
+.red-social-icono:hover .rsi-circulo {
+  box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+}
+
+/* Etiqueta pequeña dentro del círculo */
+.rsi-etiqueta {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  text-align: center;
+  line-height: 1.1;
+}
+
+/* Nombre bajo el círculo */
+.rsi-nombre {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: var(--color-azul-marino);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Colores específicos de cada red / sección */
+.rsi-musicales  { background: linear-gradient(135deg, #1a1a2e, #C8102E); }
+.rsi-somalo     { background: linear-gradient(135deg, #1a4a1a, #2e7d1e); }
+.rsi-whatsapp   { background: #25D366; }
+.rsi-instagram  { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.rsi-facebook   { background: #1877F2; }
+.rsi-flickr     { background: linear-gradient(135deg, #ff0084, #0063dc); }
+
+
+/* ════════════════════════════════════════════════════════
+   12. CONTACTO
+   ════════════════════════════════════════════════════════ */
+.contacto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
+
+/* Bloque individual de contacto */
+.contacto-bloque {
+  background: var(--color-blanco);
+  border: 1.5px solid var(--color-gris-medio);
+  border-radius: var(--radio-borde);
+  padding: 24px 22px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.contacto-icono {
+  color: var(--color-rojo);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contacto-bloque h3 {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-azul-marino);
+  margin-bottom: 6px;
+}
+
+.contacto-bloque a,
+.contacto-bloque address {
+  font-size: 0.95rem;
+  color: var(--color-gris-texto);
+  line-height: 1.6;
+}
+
+.contacto-bloque a:hover {
+  color: var(--color-rojo);
+}
+
+
+/* ════════════════════════════════════════════════════════
+   13. LEGAL (CANAL DENUNCIAS / PROTECCIÓN DE DATOS)
+   ════════════════════════════════════════════════════════ */
+.legal-seccion {
+  padding: 40px 0;
+}
+
+.legal-cabecera {
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.legal-resumen {
+  flex: 1;
+  font-size: 0.95rem;
+  color: var(--color-gris-texto);
+  line-height: 1.7;
+  min-width: 200px;
+}
+
+/* Botón "Leer más" / "Leer menos" */
+.legal-expandir {
+  flex-shrink: 0;
+  background: var(--color-azul-marino);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 18px;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transicion);
+}
+
+.legal-expandir:hover {
+  background: var(--color-rojo);
+}
+
+/* Texto completo colapsable */
+.legal-texto-completo {
+  margin-top: 20px;
+  padding: 24px;
+  background: var(--color-blanco);
+  border: 1.5px solid var(--color-gris-medio);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+/* Oculto por defecto mediante atributo hidden (gestionado por JS) */
+.legal-texto-completo[hidden] {
+  display: none;
+}
+
+.legal-texto-completo p {
+  font-size: 0.9rem;
+  color: var(--color-gris-texto);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.legal-texto-completo h4 {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-azul-marino);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 18px 0 8px;
+}
+
+.legal-texto-completo ul {
+  padding-left: 20px;
+  margin-bottom: 14px;
+}
+
+.legal-texto-completo li {
+  font-size: 0.88rem;
+  color: var(--color-gris-texto);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+/* Enlace-botón dentro del texto legal */
+.legal-enlace-boton {
+  display: inline-block;
+  margin-top: 12px;
+  background: var(--color-rojo);
+  color: white;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background var(--transicion);
+}
+
+.legal-enlace-boton:hover {
+  background: var(--color-rojo-oscuro);
+  text-decoration: none;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   14. TRANSPARENCIA Y PATROCINADORES
+   ════════════════════════════════════════════════════════ */
+.transparencia-seccion {
+  background: var(--color-gris-claro);
+  padding: 48px 0;
+}
+
+.transparencia-texto {
+  max-width: 780px;
+  margin-bottom: 36px;
+}
+
+.transparencia-texto p {
+  font-size: 0.95rem;
+  color: var(--color-gris-texto);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+.patrocinadores-titulo {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-azul-marino);
+  margin-bottom: 16px;
+}
+
+/* Fila de logos de patrocinadores */
+.patrocinadores-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Cada bloque de patrocinador (imagen o placeholder) */
+.patrocinador-placeholder {
+  background: white;
+  border: 1.5px solid var(--color-gris-medio);
+  border-radius: 8px;
+  padding: 12px 20px;
+  min-width: 110px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Si no hay imagen, muestra el texto del data-nombre */
+.patrocinador-placeholder:not(:has(img[style]))::after {
+  content: attr(data-nombre);
+  font-size: 0.8rem;
+  color: var(--color-gris-texto);
+  font-weight: 700;
+}
+
+.patrocinador-placeholder img {
+  max-height: 48px;
+  max-width: 140px;
+  object-fit: contain;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   15. FOOTER
+   ════════════════════════════════════════════════════════ */
+.footer-principal {
+  background: var(--color-rojo);
+  padding: 28px 0;
+}
+
+.footer-contenedor {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* Logo del colegio en el footer — ya viene en blanco, no necesita filtro */
+.footer-logo-colegio img {
+  height: 52px;
+  max-width: 200px;
+  object-fit: contain;
+}
+
+.footer-logo-texto {
+  font-family: var(--fuente-titulos);
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: white;
+  letter-spacing: 0.04em;
+}
+
+.footer-info {
+  flex: 1;
+}
+
+.footer-info p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+}
+
+/* Email en el footer */
+.footer-email {
+  color: rgba(255,255,255,0.75);
+  font-size: 0.82rem;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.35);
+  padding-bottom: 1px;
+  transition: color var(--transicion);
+}
+
+.footer-email:hover {
+  color: white;
+  text-decoration: none;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   RESPONSIVE – ADAPTACIÓN A PANTALLAS PEQUEÑAS
+   ════════════════════════════════════════════════════════
+   Los cambios de diseño para móviles y tabletas van aquí.
+   @media (max-width: 768px) = tabletas y móviles
+   @media (max-width: 480px) = móviles pequeños
+   ════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  /* Header: ocultar menú horizontal, mostrar hamburguesa */
+  .header-nav { display: none; }
+  .menu-movil-btn { display: flex; }
+
+  /* Hero más compacto */
+  .hero { min-height: 380px; }
+  .hero-contenido { padding: 44px 20px; }
+
+  /* Secciones: pasar de 2 columnas a 1 columna */
+  .secciones-grid { grid-template-columns: 1fr; }
+
+  /* Bosconecta: apilar elementos */
+  .bosconecta-contenido { flex-direction: column; text-align: center; }
+  .bosconecta-boton { margin-left: 0; width: 100%; text-align: center; }
+
+  /* PDFs: 1 columna */
+  .pdf-grid { grid-template-columns: 1fr; }
+
+  /* Redes: reducir gap */
+  .redes-grid { gap: 16px 20px; }
+  .rsi-circulo { width: 64px; height: 64px; }
+
+  /* Contacto: 1 columna */
+  .contacto-grid { grid-template-columns: 1fr; }
+
+  /* Footer: apilar */
+  .footer-contenedor { flex-direction: column; text-align: center; gap: 14px; }
+}
+
+@media (max-width: 480px) {
+  /* Reducir espaciado en móviles pequeños */
+  :root { --espaciado-seccion: 40px; }
+  .seccion-titulo { font-size: 1.4rem; }
+  .hero h1 { font-size: 1.8rem; }
+}

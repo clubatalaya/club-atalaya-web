@@ -53,6 +53,7 @@
       <!-- Menú de navegación principal -->
       <!-- EDITAR: puedes añadir, quitar o cambiar los elementos del menú -->
       <nav class="header-nav" aria-label="Navegación principal">
+        <a href="#bosconecta">Bosconecta</a>
         <a href="#secciones">Secciones</a>
         <a href="#comunicados">Comunicados</a>
         <a href="#redes">Redes</a>
@@ -68,6 +69,7 @@
 
   <!-- Menú desplegable en móvil -->
   <nav class="menu-movil" id="menuMovil" aria-hidden="true">
+    <a href="#bosconecta" onclick="cerrarMenu()">Bosconecta</a>
     <a href="#secciones" onclick="cerrarMenu()">Secciones</a>
     <a href="#comunicados" onclick="cerrarMenu()">Comunicados</a>
     <a href="#redes" onclick="cerrarMenu()">Redes</a>
@@ -112,7 +114,7 @@
        SECCIÓN: BOSCONECTA
        Banda destacada con acceso al área privada
        ════════════════════════════════════════════════════ -->
-  <section class="bosconecta-banda">
+  <section class="bosconecta-banda" id="bosconecta">
     <div class="contenedor bosconecta-contenido">
 
       <!-- Logo Bosconecta: círculo dorado con el icono en blanco centrado -->
@@ -509,11 +511,11 @@
       <h2 class="seccion-titulo">Canal de Denuncias</h2>
 
       <!-- Botón que muestra/oculta el texto completo -->
-      <div class="legal-cabecera" onclick="toggleLegal('denuncias')">
+      <div class="legal-cabecera">
         <p class="legal-resumen">
           La Inspectoría Salesiana Santiago el Mayor ha habilitado un canal de denuncias para comunicar de manera confidencial posibles irregularidades o incumplimientos éticos y normativos.
         </p>
-        <button class="legal-expandir" id="btnDenuncias" aria-expanded="false">Leer más +</button>
+        <button class="legal-expandir" id="btnDenuncias" aria-expanded="false" onclick="toggleLegal('denuncias')">Leer más +</button>
       </div>
 
       <!-- Texto completo (oculto por defecto, se expande al hacer clic) -->
@@ -558,11 +560,11 @@
 
       <h2 class="seccion-titulo">Protección de Datos</h2>
 
-      <div class="legal-cabecera" onclick="toggleLegal('datos')">
+      <div class="legal-cabecera">
         <p class="legal-resumen">
           La ASOCIACIÓN CLUB ATALAYA SALESIANOS SANTANDER trata tus datos de acuerdo con el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 de Protección de Datos Personales.
         </p>
-        <button class="legal-expandir" id="btnDatos" aria-expanded="false">Leer más +</button>
+        <button class="legal-expandir" id="btnDatos" aria-expanded="false" onclick="toggleLegal('datos')">Leer más +</button>
       </div>
 
       <div class="legal-texto-completo" id="datos" hidden>

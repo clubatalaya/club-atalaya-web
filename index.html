@@ -55,10 +55,11 @@
       <!-- EDITAR: puedes añadir, quitar o cambiar los elementos del menú -->
       <nav class="header-nav" aria-label="Navegación principal">
         <a href="#bosconecta">Bosconecta</a>
-        <a href="#secciones">Secciones</a>
+        <a href="#actividades">Actividades</a>
         <a href="#comunicados">Comunicados</a>
         <a href="#redes">Redes</a>
         <a href="#contacto">Contacto</a>
+        <a href="https://solitary-waterfall-4e04club-atalaya-api.clubatalaya-18e.workers.dev/admin" target="_blank" rel="noopener" style="background:#27a49b;color:#fff;padding:5px 12px;border-radius:6px;font-weight:700;font-size:.82rem">&#9881; Admin</a>
       </nav>
 
       <!-- Botón menú móvil (hamburguesa) -->
@@ -71,7 +72,7 @@
   <!-- Menú desplegable en móvil -->
   <nav class="menu-movil" id="menuMovil" aria-hidden="true">
     <a href="#bosconecta" onclick="cerrarMenu()">Bosconecta</a>
-    <a href="#secciones" onclick="cerrarMenu()">Secciones</a>
+    <a href="#actividades" onclick="cerrarMenu()">Actividades</a>
     <a href="#comunicados" onclick="cerrarMenu()">Comunicados</a>
     <a href="#redes" onclick="cerrarMenu()">Redes</a>
     <a href="#contacto" onclick="cerrarMenu()">Contacto</a>
@@ -105,7 +106,7 @@
         </p>
 
         <!-- EDITAR: texto del botón de llamada a la acción -->
-        <a href="#secciones" class="hero-boton">Descubre nuestras secciones</a>
+        <a href="#actividades" class="hero-boton">Descubre nuestras secciones</a>
       </div>
     </div>
   </section>
@@ -150,10 +151,10 @@
        SECCIÓN: ORATORIO Y CENTRO JUVENIL
        Dos tarjetas con enlace a Instagram Highlights
        ════════════════════════════════════════════════════ -->
-  <section class="seccion" id="secciones">
+  <section class="seccion" id="actividades">
     <div class="contenedor">
 
-      <h2 class="seccion-titulo">Secciones del Club</h2>
+      <h2 class="seccion-titulo">Actividades</h2>
 
       <div class="secciones-grid">
 
@@ -339,6 +340,11 @@
 
       </div><!-- fin .pdf-grid -->
 
+      <!-- Lista adicional de comunicados (cargada dinámicamente) -->
+      <div id="comunicadosLista" style="display:none;margin-top:24px">
+        <h3 style="font-size:.95rem;font-weight:700;color:#1a1a2e;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #eee">Más comunicados</h3>
+      </div>
+
       <!-- Nota de ayuda para el administrador -->
       <p class="pdf-nota-admin">
         💡 <strong>Para añadir un comunicado:</strong> sube el PDF a Google Drive, compártelo como "cualquiera con el enlace puede ver" y añade una nueva tarjeta en el código HTML siguiendo el modelo anterior.
@@ -369,7 +375,7 @@
 
       <h2 class="seccion-titulo">Síguenos</h2>
 
-      <div class="redes-grid">
+      <div class="redes-grid" id="redesSociales">
 
         <!-- ── 1. MUSICALES ── -->
         <!-- EDITAR: cambia el href si cambia el link del highlight -->

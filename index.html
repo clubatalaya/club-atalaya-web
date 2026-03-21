@@ -120,149 +120,9 @@
     <div class="contenedor bosconecta-contenido">
 
       <!-- Logo Bosconecta: círculo dorado con el icono en blanco centrado -->
-      <div class="bosconecta-logo-wrapper" style="text-align:center;margin:0 auto 24px">
-        <a href="https://confedonbosco.org/areaprivada/" target="_blank" rel="noopener" style="display:inline-block">
-          <img
-            src="imagenes/logotipos/logo-bosconecta-120x120.png"
-            alt="Logo Bosconecta"
-            style="width:160px;height:auto;display:block;margin:0 auto"
-          >
-        </a>
+      <div class="bosconecta-logo-wrapper" style="text-align:center;margin-bottom:20px">
+        <img src="imagenes/logotipos/logo-bosconecta-120x120.png" alt="Logo Bosconecta" style="width:180px;height:auto;display:block;margin:0 auto">
       </div>
-      <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Club Atalaya · Salesianos Santander</title>
-
-  <!--
-  ════════════════════════════════════════════════════════════════════
-  WEB DEL CLUB ATALAYA – SALESIANOS SANTANDER
-  ════════════════════════════════════════════════════════════════════
-  Archivo principal: index.html
-  Para hacer cambios de contenido busca los comentarios "EDITAR:"
-  que aparecen justo antes de cada texto o dato modificable.
-  ════════════════════════════════════════════════════════════════════
-  -->
-
-  <!-- Tipografía: Raleway (títulos) + Lato (texto) desde Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
-
-  <!-- Hoja de estilos principal -->
-  <link rel="stylesheet" href="css/estilos.css" />
-
-  <script src="js/scripts.js" defer></script></head>
-
-<body>
-
-  <!-- ════════════════════════════════════════════════════
-       BARRA DE NAVEGACIÓN SUPERIOR
-       ════════════════════════════════════════════════════ -->
-  <header class="header-principal">
-    <div class="header-contenedor">
-
-      <!-- Logo del club -->
-      <!-- EDITAR: sustituye "imagenes/logotipos/logo-atalaya-200x200.png"
-           por la ruta real de tu logo cuando lo tengas -->
-      <a href="#inicio" class="header-logo">
-        <img
-          src="imagenes/logotipos/logo-atalaya-200x200.png"
-          alt="Logo Club Atalaya"
-          width="64" height="64"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-        />
-        <!-- Placeholder que aparece si no existe la imagen del logo -->
-        <div class="logo-placeholder" style="display:none;">CA</div>
-        <div class="header-nombre">
-          <span class="nombre-club">Club Atalaya</span>
-          <span class="nombre-subtitulo">Salesianos Santander</span>
-        </div>
-      </a>
-
-      <!-- Menú de navegación principal -->
-      <!-- EDITAR: puedes añadir, quitar o cambiar los elementos del menú -->
-      <nav class="header-nav" aria-label="Navegación principal">
-        <a href="#bosconecta">Bosconecta</a>
-        <a href="#actividades">Actividades</a>
-        <a href="#comunicados">Comunicados</a>
-        <a href="#redes">Redes</a>
-        <a href="#contacto">Contacto</a>
-        <a href="https://solitary-waterfall-4e04club-atalaya-api.clubatalaya-18e.workers.dev/admin" target="_blank" rel="noopener" style="background:#27a49b;color:#fff;padding:5px 12px;border-radius:6px;font-weight:700;font-size:.82rem">&#9881; Admin</a>
-      </nav>
-
-      <!-- Botón menú móvil (hamburguesa) -->
-      <button class="menu-movil-btn" id="menuBtn" aria-label="Abrir menú">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- Menú desplegable en móvil -->
-  <nav class="menu-movil" id="menuMovil" aria-hidden="true">
-    <a href="#bosconecta" onclick="cerrarMenu()">Bosconecta</a>
-    <a href="#actividades" onclick="cerrarMenu()">Actividades</a>
-    <a href="#comunicados" onclick="cerrarMenu()">Comunicados</a>
-    <a href="#redes" onclick="cerrarMenu()">Redes</a>
-    <a href="#contacto" onclick="cerrarMenu()">Contacto</a>
-  </nav>
-
-
-  <!-- ════════════════════════════════════════════════════
-       SECCIÓN HERO (PRESENTACIÓN DEL CLUB)
-       La imagen de fondo se define en estilos.css
-       ════════════════════════════════════════════════════ -->
-  <section class="hero" id="heroImagen" data-inicio="inicio">
-    <div class="hero-overlay">
-      <div class="hero-contenido">
-
-        <span class="hero-etiqueta">Club Juvenil · Santander</span>
-
-        <!-- EDITAR: título principal del hero -->
-        <h1 id="heroTitulo">Bienvenidos al Club Atalaya</h1>
-
-        <!--
-        EDITAR: Texto de presentación del club.
-        Este texto aparece en el bloque central sobre la imagen de fondo.
-        Puedes modificarlo directamente aquí.
-        -->
-        <p id="heroTexto">
-          El Club Atalaya es el espacio de tiempo libre de Salesianos Santander,
-          un lugar de encuentro para niños, adolescentes y jóvenes que quieren
-          crecer como personas, divertirse y comprometerse con los demás.
-          Formamos parte de la gran familia salesiana, guiados por el espíritu
-          de Don Bosco: «buenos cristianos y honrados ciudadanos».
-        </p>
-
-        <!-- EDITAR: texto del botón de llamada a la acción -->
-        <a href="#actividades" class="hero-boton">Descubre nuestras actividades</a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ════════════════════════════════════════════════════
-       SECCIÓN: BOSCONECTA
-       Banda destacada con acceso al área privada
-       ════════════════════════════════════════════════════ -->
-  <section class="bosconecta-banda" id="bosconecta">
-    <div class="contenedor bosconecta-contenido">
-
-      <!-- Logo Bosconecta: círculo dorado con el icono en blanco centrado -->
-      <div class="bosconecta-logo-wrapper" style="max-width:220px;margin:0 auto 24px">
-        <a href="https://confedonbosco.org/areaprivada/" target="_blank" rel="noopener" style="display:inline-block;padding:16px 32px;font-size:1.1rem;font-weight:800;border-radius:8px">
-          <img
-            src="imagenes/logotipos/bosconecta.png"
-            alt="Logo Bosconecta"
-            width="80" height="80"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-          / style="width:200px;height:auto;display:block">
-          
-        </a>
-      </div>
-
       <div class="bosconecta-texto">
         <h2>Bosconecta</h2>
         <!-- EDITAR: descripción del acceso a Bosconecta -->
@@ -270,7 +130,7 @@
       </div>
 
       <!-- EDITAR: el href lleva al área privada de Bosconecta -->
-      <a href="https://confedonbosco.org/areaprivada/" target="_blank" rel="noopener" class="bosconecta-boton" style="display:inline-block;padding:16px 32px;font-size:1.1rem;font-weight:800;border-radius:8px">
+      <a href="https://confedonbosco.org/areaprivada/" target="_blank" rel="noopener" class="bosconecta-boton" style="padding:14px 28px;font-size:1.05rem;font-weight:800">
         Acceder al área privada →
       </a>
 
@@ -417,13 +277,13 @@
        4. Duplica uno de los bloques <article class="pdf-tarjeta"> de abajo
        5. Cambia el href, el título y la descripción
        ════════════════════════════════════════════════════ -->
-  <section class="seccion seccion-clara" id="comunicados" style="text-align:center">
+  <section class="seccion seccion-clara" id="comunicados">
     <div class="contenedor">
 
       <h2 class="seccion-titulo">Comunicados</h2>
       <p class="seccion-subtitulo">Documentos e información para las familias y participantes del Club Atalaya</p>
 
-      <div class="pdf-grid" style="justify-items:center" id="comunicadosGrid" style="justify-items:center">
+      <div class="pdf-grid" style="justify-items:center" id="comunicadosGrid">
 
         <!-- ── PDF 1 ── -->
         <!-- EDITAR: cambia el href, título y descripción por los de tu documento real -->
@@ -761,7 +621,7 @@
   <!-- ════════════════════════════════════════════════════
        SECCIÓN: POLÍTICA DE TRANSPARENCIA
        ════════════════════════════════════════════════════ -->
-  <section class="seccion transparencia-seccion" style="text-align:center">
+  <section class="seccion transparencia-seccion">
     <div class="contenedor">
 
       <h2 class="seccion-titulo">Política de Transparencia</h2>

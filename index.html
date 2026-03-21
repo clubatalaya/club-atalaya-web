@@ -83,21 +83,21 @@
        SECCIÓN HERO (PRESENTACIÓN DEL CLUB)
        La imagen de fondo se define en estilos.css
        ════════════════════════════════════════════════════ -->
-  <section class="hero" id="inicio">
+  <section class="hero" id="heroImagen" data-inicio="inicio">
     <div class="hero-overlay">
       <div class="hero-contenido">
 
         <span class="hero-etiqueta">Club Juvenil · Santander</span>
 
         <!-- EDITAR: título principal del hero -->
-        <h1>Bienvenidos al Club Atalaya</h1>
+        <h1 id="heroTitulo">Bienvenidos al Club Atalaya</h1>
 
         <!--
         EDITAR: Texto de presentación del club.
         Este texto aparece en el bloque central sobre la imagen de fondo.
         Puedes modificarlo directamente aquí.
         -->
-        <p>
+        <p id="heroTexto">
           El Club Atalaya es el espacio de tiempo libre de Salesianos Santander,
           un lugar de encuentro para niños, adolescentes y jóvenes que quieren
           crecer como personas, divertirse y comprometerse con los demás.
@@ -146,36 +146,9 @@
     </div>
   
 
-      <!-- ── Vídeos de instrucciones ── -->
-      <div style="margin-top:28px">
-        <h3 style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:14px;text-align:center">📹 Vídeos de instrucciones</h3>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
-          <a href="https://www.youtube.com/watch?v=mc9eDYibm7Q" target="_blank" rel="noopener"
-             style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:14px;text-decoration:none;color:#222;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:.2s"
-             onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,.12)';this.style.borderColor='#C8102E'"
-             onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,.06)';this.style.borderColor='#e0e0e0'">
-            <div style="width:52px;height:52px;background:#C8102E;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <div>
-              <div style="font-weight:700;font-size:.9rem;color:#1a1a2e;margin-bottom:3px">Vídeo de instrucciones 1</div>
-              <div style="font-size:.78rem;color:#888">Ver en YouTube ↗</div>
-            </div>
-          </a>
-          <a href="https://www.youtube.com/watch?v=QTaLz1BatIQ" target="_blank" rel="noopener"
-             style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:14px;text-decoration:none;color:#222;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:.2s"
-             onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,.12)';this.style.borderColor='#C8102E'"
-             onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,.06)';this.style.borderColor='#e0e0e0'">
-            <div style="width:52px;height:52px;background:#C8102E;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <div>
-              <div style="font-weight:700;font-size:.9rem;color:#1a1a2e;margin-bottom:3px">Vídeo de instrucciones 2</div>
-              <div style="font-size:.78rem;color:#888">Ver en YouTube ↗</div>
-            </div>
-          </a>
-        </div>
-      </div>
+      
+      <!-- ── Vídeos de instrucciones (configurables desde panel admin) ── -->
+      <div id="videosInstrucciones" style="margin-top:28px"></div>
 </section>
 
 

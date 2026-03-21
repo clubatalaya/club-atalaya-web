@@ -128,7 +128,7 @@ function cargarComunicados(){
     var listaEl=document.getElementById('comunicadosLista');
 
     if(grid&&destacados.length){
-      grid.innerHTML='';grid.style.justifyItems='center';
+      grid.innerHTML='';grid.style.cssText='justify-items:center;text-align:center';
       destacados.forEach(function(p){
         var fecha=new Date(p.fecha).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
         var url=WORKER_URL+'/api/archivo/'+encodeURIComponent(p.key);
@@ -215,11 +215,11 @@ function renderVideos(videos){
   if(!cont||!videos.length)return;
   cont.innerHTML='<h3 style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:14px;text-align:center">📹 Vídeos de instrucciones</h3>';
   var grid=document.createElement('div');
-  grid.style.cssText='display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,auto));gap:12px;justify-content:center';
+  grid.style.cssText='display:flex;flex-wrap:wrap;justify-content:center;gap:10px';
   videos.forEach(function(v){
     var a=document.createElement('a');
     a.href=v.url;a.target='_blank';a.rel='noopener';
-    a.style.cssText='display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:12px 16px;text-decoration:none;color:#222;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:.2s;width:auto';
+    a.style.cssText='display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:10px 16px;text-decoration:none;color:#222;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:.2s';
     a.onmouseover=function(){this.style.boxShadow='0 4px 16px rgba(0,0,0,.12)';this.style.borderColor='#C8102E';};
     a.onmouseout=function(){this.style.boxShadow='0 2px 8px rgba(0,0,0,.06)';this.style.borderColor='#e0e0e0';};
     a.innerHTML='<div style="width:52px;height:52px;background:#C8102E;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M8 5v14l11-7z"/></svg></div><div><div style="font-weight:700;font-size:.9rem;color:#1a1a2e;margin-bottom:3px">'+v.titulo+'</div><div style="font-size:.78rem;color:#888">Ver en YouTube ↗</div></div>';

@@ -194,3 +194,98 @@ comprobarEmbedInstagram('igCJ',       'igCJFallback');
        imagenes/secciones/centrojuvenil-preview.jpg
   3. Las tarjetas mostrarán esa imagen con un enlace a Instagram
 */
+
+
+
+/* ─────────────────────────────────────────────
+   INTEGRACIÓN CON EL WORKER (CARTELES Y PDFs)
+   ─────────────────────────────────────────────
+   Carga dinámicamente los carteles y comunicados
+   desde el panel de administración del Worker.
+   Si el Worker no tiene nada, se muestran los
+   contenidos estáticos que ya había en el HTML.
+   ───────────────────────────────────────────── */
+
+var WORKER_URL = 'https://solitary-waterfall-4e04club-atalaya-api.clubatalaya-18e.workers.dev';
+
+/* -- Carga los carteles activos -- */
+function cargarCarteles() {
+  fetch(WORKER_URL + '/api/carteles')
+    .then(function(r) { return r.json(); })
+    .then(function(cfg) {
+      if (cfg.oratorio && cfg.oratorio.key) {
+        var imgO = document.getElementById('cartelOratorio');
+        if (imgO) {
+          imgO.src = WORKER_URL + '/api/archivo/' + encodeURIComponent(cfg.oratorio.key);
+          imgO.onerror = function() { this.parentElement.classList.add('cartel-vacio'); };
+        }
+      }
+      if (cfg.centrojuvenil && cfg.centrojuvenil.key) {
+        var imgC = document.getElementById('cartelCentroJuvenil');
+        if (imgC) {
+          imgC.src = WORKER_URL + '/api/archivo/' + encodeURIComponent(cfg.centrojuvenil.key);
+          imgC.onerror = function() { this.parentElement.classList.add('cartel-vacio'); };
+        }
+      }
+    })
+    .catch(function() {
+      /* Si falla el Worker, los carteles estáticos del HTML permanecen */
+    });
+}
+
+/* -- Carga los comunicados PDF publicados -- */
+function cargarComunicados() {
+  fetch(WORKER_URL + '/api/comunicados')
+    .then(function(r) { return r.json(); })
+    .then(function(lista) {
+      if (!lista.length) return; /* Sin PDFs: se muestran las tarjetas estáticas */
+      var grid = document.getElementById('comunicadosGrid');
+      if (!grid) return;
+      /* Reemplaza las tarjetas estáticas con las del Worker */
+      grid.innerHTML = '';
+      lista.forEach(function(p) {
+        var fecha = new Date(p.fecha).toLocaleDateString('es-ES', {
+          day: '2-digit', month: 'long', year: 'numeric'
+        });
+        var url = WORKER_URL + '/api/archivo/' + encodeURIComponent(p.key);
+
+        var art = document.createElement('article');
+        art.className = 'pdf-tarjeta';
+        art.innerHTML =
+          '<div class="pdf-icono">' +
+            '<svg viewBox="0 0 48 48" width="48" height="48" fill="none">' +
+              '<rect width="48" height="48" rx="8" fill="#C8102E" opacity="0.12"/>' +
+              '<path d="M14 8h14l10 10v22a2 2 0 01-2 2H14a2 2 0 01-2-2V10a2 2 0 012-2z" fill="#C8102E" opacity="0.2" stroke="#C8102E" stroke-width="1.5"/>' +
+              '<path d="M28 8v10h10" stroke="#C8102E" stroke-width="1.5" fill="none"/>' +
+            '</svg>' +
+          '</div>' +
+          '<div class="pdf-info">' +
+            '<h3 class="pdf-titulo">' + p.titulo + '</h3>' +
+            '<p class="pdf-fecha"><time>' + fecha + '</time></p>' +
+          '</div>';
+
+        var btn = document.createElement('button');
+        btn.className = 'pdf-tarjeta-btn';
+        btn.textContent = 'Ver PDF';
+        btn.setAttribute('aria-label', 'Ver ' + p.titulo);
+
+        /* Closure para capturar url y titulo correctamente en el bucle */
+        (function(u, t) {
+          btn.onclick = function() { abrirPDF(u, t); };
+          art.onclick = function(e) {
+            if (!e.target.closest('button')) abrirPDF(u, t);
+          };
+        })(url, p.titulo);
+
+        art.appendChild(btn);
+        grid.appendChild(art);
+      });
+    })
+    .catch(function() {
+      /* Si falla el Worker, las tarjetas estáticas del HTML permanecen */
+    });
+}
+
+/* Ejecutar al cargar la página */
+cargarCarteles();
+cargarComunicados();

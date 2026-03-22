@@ -334,7 +334,19 @@ function cargarRedes(){
       var a=document.createElement('a');a.href=r.url;a.target='_blank';a.rel='noopener';
       a.className='red-social-icono';a.setAttribute('aria-label',r.nombre);
       var circulo=document.createElement('div');circulo.className='rsi-circulo rsi-'+(r.icono||'otro');
-      circulo.innerHTML=(SVG[r.icono]||SVG.otro)+'<span class="rsi-etiqueta">'+r.nombre+'</span>';
+      if(r.imagenKey){
+        // Imagen personalizada subida desde el admin
+        var imgIcon=document.createElement('img');
+        imgIcon.src=WORKER_URL+'/api/archivo/'+encodeURIComponent(r.imagenKey);
+        imgIcon.alt=r.nombre;
+        imgIcon.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%;display:block';
+        imgIcon.onerror=function(){this.parentElement.innerHTML=(SVG[r.icono]||SVG.otro)+'<span class="rsi-etiqueta">'+r.nombre+'</span>';};
+        circulo.appendChild(imgIcon);
+        var etiq=document.createElement('span');etiq.className='rsi-etiqueta';etiq.textContent=r.nombre;
+        circulo.appendChild(etiq);
+      } else {
+        circulo.innerHTML=(SVG[r.icono]||SVG.otro)+'<span class="rsi-etiqueta">'+r.nombre+'</span>';
+      }
       var nombre=document.createElement('span');nombre.className='rsi-nombre';nombre.textContent=r.nombre;
       a.appendChild(circulo);a.appendChild(nombre);cont.appendChild(a);
     });

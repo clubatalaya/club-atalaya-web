@@ -176,8 +176,12 @@ function cargarCarteles(){
       var imgEl=document.getElementById(idImg);if(!imgEl)return;
       var carteles=cfg[sec]||[];if(!carteles.length)return;
       var contenedor=imgEl.parentElement;
-      if(carteles.length>1){imgEl.style.display='none';crearSlider(contenedor,carteles);}
-      else{imgEl.src=WORKER_URL+'/api/archivo/'+encodeURIComponent(carteles[0].key);
+      if(carteles.length>=1){
+        imgEl.style.display='none';
+        // Remove existing instagram badge if present
+        var badge=contenedor.querySelector('.cartel-ig-link,.cartel-ig-badge');if(badge)badge.remove();
+        crearSlider(contenedor,carteles);}
+      if(false&&carteles.length===1){imgEl.src=WORKER_URL+'/api/archivo/'+encodeURIComponent(carteles[0].key);
         if(carteles[0].enlace){var a=document.createElement('a');a.href=carteles[0].enlace;a.target='_blank';a.rel='noopener';imgEl.parentNode.insertBefore(a,imgEl);a.appendChild(imgEl);}
       }
     });

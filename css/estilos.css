@@ -432,7 +432,6 @@ address {
   grid-template-columns: 1fr 1fr;
   gap: 28px;
   margin-top: 32px;
-  margin-bottom: 48px;
 }
 
 .seccion-card {

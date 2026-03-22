@@ -195,8 +195,9 @@ function cargarComunicados(){
         art.style.cssText='cursor:pointer;display:flex;flex-direction:column;background:#fff;border:1px solid #e0e0e0;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:.2s';
 
         // Miniatura media pantalla: embed del PDF
+        var isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
         var thumbWrap=document.createElement('div');
-        thumbWrap.style.cssText='position:relative;height:320px;background:#f5f5f5;overflow:hidden;flex-shrink:0';
+        thumbWrap.style.cssText='position:relative;height:'+(isMobile?'120px':'260px')+';background:#f5f5f5;overflow:hidden;flex-shrink:0';
 
         var isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
         var embed;

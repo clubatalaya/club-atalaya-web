@@ -1179,6 +1179,8 @@ address {
 
   /* Header: ocultar menú horizontal, mostrar hamburguesa */
   .header-nav { display: none; }
+  /* Botón Admin siempre visible aunque el nav esté oculto */
+  .btn-admin { display: inline-flex !important; flex-shrink: 0; margin-left: auto; }
   .menu-movil-btn { display: flex; }
 
   /* Hero más compacto */
@@ -1211,4 +1213,20 @@ address {
   :root { --espaciado-seccion: 40px; }
   .seccion-titulo { font-size: 1.4rem; }
   .hero h1 { font-size: 1.8rem; }
+}
+
+/* PDF embed: no funciona en iOS/móvil — ocultar y mostrar solo botones */
+@media (max-width: 768px) {
+  .pdf-tarjeta embed { display: none; }
+  .pdf-tarjeta [style*="height:320px"] { height: 80px !important; background: #f0f0f0 !important; }
+  .pdf-tarjeta [style*="height:320px"]::before {
+    content: '📄';
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+  }
+  .pdf-tarjeta { flex-direction: row !important; }
+  .pdf-tarjeta [style*="height:320px"] { height: 60px !important; width: 60px; flex-shrink: 0; }
 }

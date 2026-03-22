@@ -199,7 +199,6 @@ function cargarComunicados(){
         var thumbWrap=document.createElement('div');
         thumbWrap.style.cssText='position:relative;height:'+(isMobile?'120px':'260px')+';background:#f5f5f5;overflow:hidden;flex-shrink:0';
 
-        var isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
         var embed;
         if(!isMobile){
           embed=document.createElement('embed');
@@ -231,8 +230,8 @@ function cargarComunicados(){
 
         // Info debajo
         var info=document.createElement('div');
-        info.style.cssText='padding:14px 16px';
-        info.innerHTML='<h3 style="font-size:.95rem;font-weight:700;color:#1a1a2e;margin-bottom:4px">'+p.titulo+'</h3><p style="font-size:.78rem;color:#888"><time>'+fecha+'</time></p>';
+        info.style.cssText='padding:10px 14px;background:#fff;flex-shrink:0';
+        info.innerHTML='<h3 style="font-size:.9rem;font-weight:700;color:#1a1a2e;margin-bottom:2px;white-space:normal;overflow:visible">'+p.titulo+'</h3><p style="font-size:.76rem;color:#888;margin-top:2px"><time>'+fecha+'</time></p>';
 
         (function(u,t){
           btnVer.onclick=function(e){e.stopPropagation();abrirPDF(u,t);};

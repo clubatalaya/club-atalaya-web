@@ -1,61 +1,61 @@
 /*
-════════════════════════════════════════════════════════════════
-  HOJA DE ESTILOS – CLUB ATALAYA · SALESIANOS SANTANDER
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  HOJA DE ESTILOS â CLUB ATALAYA Â· SALESIANOS SANTANDER
   Archivo: css/estilos.css
-════════════════════════════════════════════════════════════════
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
-  ÍNDICE DE SECCIONES:
-  1.  Variables y configuración global
+  ÃNDICE DE SECCIONES:
+  1.  Variables y configuraciÃ³n global
   2.  Reset y base
   3.  Header (barra superior)
-  4.  Menú móvil
-  5.  Hero (presentación principal)
-  6.  Bloques de sección genéricos
+  4.  MenÃº mÃ³vil
+  5.  Hero (presentaciÃ³n principal)
+  6.  Bloques de secciÃ³n genÃ©ricos
   7.  Secciones (Oratorio y Centro Juvenil)
   8.  Bosconecta
   9.  Comunicados (PDFs)
   10. Lightbox PDF
   11. Redes sociales
   12. Contacto
-  13. Legal (Canal de Denuncias / Protección de Datos)
+  13. Legal (Canal de Denuncias / ProtecciÃ³n de Datos)
   14. Transparencia y patrocinadores
   15. Footer
 
-  CÓMO CAMBIAR COLORES:
-  Modifica las variables en la sección 1 (":root").
-  Todos los colores de la web se definen ahí.
-════════════════════════════════════════════════════════════════
+  CÃMO CAMBIAR COLORES:
+  Modifica las variables en la secciÃ³n 1 (":root").
+  Todos los colores de la web se definen ahÃ­.
+ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 */
 
 
-/* ════════════════════════════════════════════════════════
-   1. VARIABLES Y CONFIGURACIÓN GLOBAL
-   ════════════════════════════════════════════════════════ */
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   1. VARIABLES Y CONFIGURACIÃN GLOBAL
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 :root {
-  /* ── Colores extraídos del logotipo del Club Atalaya ── */
-  --color-turquesa:   #27a49b;   /* Verde-agua · color dominante del logo */
+  /* ââ Colores extraÃ­dos del logotipo del Club Atalaya ââ */
+  --color-turquesa:   #27a49b;   /* Verde-agua Â· color dominante del logo */
   --color-turquesa-oscuro: #1d7d76; /* Turquesa oscuro para hovers */
-  --color-naranja:    #efa72e;   /* Naranja-amarillo · esfera central */
-  --color-verde:      #b4cc3f;   /* Verde-lima · arco exterior */
-  --color-magenta:    #c03089;   /* Magenta · arco inferior */
+  --color-naranja:    #efa72e;   /* Naranja-amarillo Â· esfera central */
+  --color-verde:      #b4cc3f;   /* Verde-lima Â· arco exterior */
+  --color-magenta:    #c03089;   /* Magenta Â· arco inferior */
 
-  /* ── Colores institucionales Salesianos ── */
-  --color-rojo:       #C8102E;   /* Rojo salesiano (Pantone 1797) · acento institucional */
+  /* ââ Colores institucionales Salesianos ââ */
+  --color-rojo:       #C8102E;   /* Rojo salesiano (Pantone 1797) Â· acento institucional */
   --color-rojo-oscuro:#a00d25;   /* Rojo oscuro para hovers */
 
-  /* ── Colores de estructura ── */
-  --color-azul-marino:#2a2a2a;   /* Gris muy oscuro · acompaña al gris del texto del logo */
+  /* ââ Colores de estructura ââ */
+  --color-azul-marino:#2a2a2a;   /* Gris muy oscuro Â· acompaÃ±a al gris del texto del logo */
   --color-azul-medio: #3a3a3a;   /* Gris medio para degradados */
   --color-texto-logo: #4e4e4e;   /* Gris exacto del texto "club atalaya" en el logo */
 
-  /* ── Colores neutros ── */
+  /* ââ Colores neutros ââ */
   --color-blanco:     #ffffff;
   --color-gris-claro: #f7f7f7;
   --color-gris-medio: #e8e8e8;
   --color-gris-texto: #555555;
   --color-texto:      #2a2a2a;
 
-  /* Tipografías */
+  /* TipografÃ­as */
   --fuente-titulos:   'Raleway', sans-serif;
   --fuente-texto:     'Lato', sans-serif;
 
@@ -67,14 +67,14 @@
   --sombra-tarjeta: 0 2px 16px rgba(26,26,46,0.10);
   --sombra-hover:   0 6px 28px rgba(26,26,46,0.18);
 
-  /* Transición estándar */
+  /* TransiciÃ³n estÃ¡ndar */
   --transicion: 0.22s ease;
 }
 
 
-/* ════════════════════════════════════════════════════════
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    2. RESET Y BASE
-   ════════════════════════════════════════════════════════ */
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -82,7 +82,7 @@
 }
 
 html {
-  scroll-behavior: smooth; /* Desplazamiento suave al hacer clic en el menú */
+  scroll-behavior: smooth; /* Desplazamiento suave al hacer clic en el menÃº */
   font-size: 16px;
 }
 
@@ -94,7 +94,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Contenedor centrado con ancho máximo */
+/* Contenedor centrado con ancho mÃ¡ximo */
 .contenedor {
   width: 100%;
   max-width: 1100px;
@@ -132,7 +132,7 @@ address {
   border: 0;
 }
 
-/* Placeholder genérico para logos ausentes */
+/* Placeholder genÃ©rico para logos ausentes */
 .logo-placeholder {
   width: 64px; height: 64px;
   background: var(--color-rojo);
@@ -161,9 +161,9 @@ address {
 }
 
 
-/* ════════════════════════════════════════════════════════
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    3. HEADER (BARRA SUPERIOR)
-   ════════════════════════════════════════════════════════ */
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 .header-principal {
   position: sticky;       /* Se queda fija al hacer scroll */
   top: 0;
@@ -216,7 +216,7 @@ address {
   text-transform: uppercase;
 }
 
-/* Navegación del header */
+/* NavegaciÃ³n del header */
 .header-nav {
   margin-left: auto;
   display: flex;
@@ -241,9 +241,9 @@ address {
   text-decoration: none;
 }
 
-/* Botón hamburguesa (solo visible en móvil) */
+/* BotÃ³n hamburguesa (solo visible en mÃ³vil) */
 .menu-movil-btn {
-  display: none;       /* Se muestra en pantallas pequeñas (ver @media abajo) */
+  display: none;       /* Se muestra en pantallas pequeÃ±as (ver @media abajo) */
   flex-direction: column;
   justify-content: center;
   gap: 5px;
@@ -263,9 +263,9 @@ address {
 }
 
 
-/* ════════════════════════════════════════════════════════
-   4. MENÚ MÓVIL (desplegable)
-   ════════════════════════════════════════════════════════ */
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   4. MENÃ MÃVIL (desplegable)
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 .menu-movil {
   display: none;  /* Oculto por defecto */
   flex-direction: column;
@@ -294,11 +294,11 @@ address {
 }
 
 
-/* ════════════════════════════════════════════════════════
-   5. HERO (PRESENTACIÓN PRINCIPAL)
-   ════════════════════════════════════════════════════════
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   5. HERO (PRESENTACIÃN PRINCIPAL)
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    EDITAR imagen de fondo: sustituye la ruta en "background-image"
-   ════════════════════════════════════════════════════════ */
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 .hero {
   position: relative;
   min-height: 520px;
@@ -306,7 +306,7 @@ address {
   align-items: center;
 
   /*
-  EDITAR: cambia la ruta de la imagen de fondo aquí.
+  EDITAR: cambia la ruta de la imagen de fondo aquÃ­.
   La imagen debe estar en: imagenes/fondos/fondo-hero.jpg
   */
   background-image: url('../imagenes/fondos/fondo-hero.jpg');
@@ -337,7 +337,7 @@ address {
   padding: 60px 24px;
 }
 
-/* Etiqueta pequeña sobre el título */
+/* Etiqueta pequeÃ±a sobre el tÃ­tulo */
 .hero-etiqueta {
   display: inline-block;
   background: var(--color-turquesa);
@@ -354,7 +354,7 @@ address {
 .hero h1 {
   font-family: var(--fuente-titulos);
   font-weight: 900;
-  font-size: clamp(2rem, 5vw, 3.2rem); /* Tamaño adaptable */
+  font-size: clamp(2rem, 5vw, 3.2rem); /* TamaÃ±o adaptable */
   color: var(--color-blanco);
   line-height: 1.1;
   margin-bottom: 20px;
@@ -369,7 +369,7 @@ address {
   margin-bottom: 32px;
 }
 
-/* Botón de llamada a la acción del hero */
+/* BotÃ³n de llamada a la acciÃ³n del hero */
 .hero-boton {
   display: inline-block;
   background: var(--color-turquesa);
@@ -392,9 +392,9 @@ address {
 }
 
 
-/* ════════════════════════════════════════════════════════
-   6. BLOQUES DE SECCIÓN GENÉRICOS
-   ════════════════════════════════════════════════════════ */
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   6. BLOQUES DE SECCIÃN GENÃRICOS
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 .seccion {
   padding: var(--espaciado-seccion) 0;
 }
@@ -404,7 +404,7 @@ address {
   background: var(--color-gris-claro);
 }
 
-/* Título estándar de sección con barra turquesa a la izquierda */
+/* TÃ­tulo estÃ¡ndar de secciÃ³n con barra turquesa a la izquierda */
 .seccion-titulo {
   font-family: var(--fuente-titulos);
   font-weight: 900;
@@ -415,7 +415,7 @@ address {
   border-left: 4px solid var(--color-turquesa);
 }
 
-/* Subtítulo descriptivo bajo el título de sección */
+/* SubtÃ­tulo descriptivo bajo el tÃ­tulo de secciÃ³n */
 .seccion-subtitulo {
   color: var(--color-gris-texto);
   font-size: 1rem;
@@ -424,14 +424,15 @@ address {
 }
 
 
-/* ════════════════════════════════════════════════════════
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    7. SECCIONES (ORATORIO Y CENTRO JUVENIL)
-   ════════════════════════════════════════════════════════ */
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 .secciones-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 28px;
   margin-top: 32px;
+  margin-bottom: 48px;
 }
 
 .seccion-card {
@@ -481,10 +482,10 @@ address {
 }
 
 /*
-  GALERÍA DE CARTELES
-  Muestra las imágenes en fila horizontal con scroll si hay muchas.
-  Para añadir carteles: sube JPGs a imagenes/secciones/oratorio/ o centrojuvenil/
-  y añade una línea <img> en el HTML.
+  GALERÃA DE CARTELES
+  Muestra las imÃ¡genes en fila horizontal con scroll si hay muchas.
+  Para aÃ±adir carteles: sube JPGs a imagenes/secciones/oratorio/ o centrojuvenil/
+  y aÃ±ade una lÃ­nea <img> en el HTML.
 */
 .carteles-galeria {
   display: flex;
@@ -511,7 +512,7 @@ address {
 
 .carteles-galeria img {
   flex-shrink: 0;
-  width: 100%;           /* cada imagen ocupa todo el ancho → scroll tipo carrusel */
+  width: 100%;           /* cada imagen ocupa todo el ancho â scroll tipo carrusel */
   max-width: 100%;
   height: 240px;
   object-fit: cover;
@@ -520,7 +521,7 @@ address {
   display: block;
 }
 
-/* Enlace a Instagram bajo la galería */
+/* Enlace a Instagram bajo la galerÃ­a */
 .seccion-ig-enlace {
   display: flex;
   align-items: center;
@@ -543,9 +544,9 @@ address {
 }
 
 
-/* ════════════════════════════════════════════════════════
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    8. BOSCONECTA
-   ════════════════════════════════════════════════════════ */
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 .bosconecta-banda {
   background: #eaaf3a;
   padding: 18px 0;
@@ -560,7 +561,7 @@ address {
   flex-wrap: wrap;
 }
 
-/* Logo de Bosconecta — ya tiene su propio círculo dorado incorporado */
+/* Logo de Bosconecta â ya tiene su propio cÃ­rculo dorado incorporado */
 .bosconecta-logo-wrapper a {
   display: flex;
   align-items: center;
@@ -599,7 +600,7 @@ address {
   font-family: var(--fuente-titulos);
   font-weight: 900;
   font-size: 1.5rem;
-  color: #3a2800;   /* marrón oscuro sobre dorado */
+  color: #3a2800;   /* marrÃ³n oscuro sobre dorado */
   margin-bottom: 4px;
 }
 
@@ -608,7 +609,7 @@ address {
   font-size: 0.9rem;
 }
 
-/* Botón de acceso a Bosconecta */
+/* BotÃ³n de acceso a Bosconecta */
 .bosconecta-boton {
   margin-left: auto;
   display: inline-block;
@@ -634,9 +635,9 @@ address {
 }
 
 
-/* ════════════════════════════════════════════════════════
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    9. COMUNICADOS (PDFs)
-   ════════════════════════════════════════════════════════ */
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 .pdf-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -688,7 +689,7 @@ address {
   line-height: 1.4;
 }
 
-/* Botón "Ver documento" */
+/* BotÃ³n "Ver documento" */
 .pdf-abrir {
   flex-shrink: 0;
   background: var(--color-turquesa);
@@ -723,9 +724,9 @@ address {
 }
 
 
-/* ════════════════════════════════════════════════════════
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    10. LIGHTBOX PDF (capa que aparece al abrir un PDF)
-   ════════════════════════════════════════════════════════ */
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 .pdf-lightbox {
   display: none;         /* Oculto por defecto */
   position: fixed;
@@ -761,7 +762,7 @@ address {
   box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 }
 
-/* Cabecera del lightbox con título y botón cerrar */
+/* Cabecera del lightbox con tÃ­tulo y botÃ³n cerrar */
 .pdf-lightbox-cabecera {
   background: var(--color-azul-marino);
   color: white;
@@ -775,7 +776,7 @@ address {
   border-bottom: 3px solid var(--color-turquesa);
 }
 
-/* Botón X para cerrar el lightbox */
+/* BotÃ³n X para cerrar el lightbox */
 .pdf-lightbox-cerrar {
   background: none;
   border: none;
@@ -799,14 +800,14 @@ address {
 }
 
 
-/* ════════════════════════════════════════════════════════
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    11. REDES SOCIALES
-   ════════════════════════════════════════════════════════ */
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 .redes-seccion {
   background: var(--color-gris-claro);
 }
 
-/* Cuadrícula de iconos de redes sociales */
+/* CuadrÃ­cula de iconos de redes sociales */
 .redes-grid {
   display: flex;
   flex-wrap: wrap;
@@ -830,7 +831,7 @@ address {
   text-decoration: none;
 }
 
-/* Círculo coloreado que contiene el icono */
+/* CÃ­rculo coloreado que contiene el icono */
 .rsi-circulo {
   width: 76px; height: 76px;
   border-radius: 50%;
@@ -848,7 +849,7 @@ address {
   box-shadow: 0 8px 28px rgba(0,0,0,0.28);
 }
 
-/* Etiqueta pequeña dentro del círculo */
+/* Etiqueta pequeÃ±a dentro del cÃ­rculo */
 .rsi-etiqueta {
   font-size: 0.58rem;
   font-weight: 700;
@@ -859,7 +860,7 @@ address {
   line-height: 1.1;
 }
 
-/* Nombre bajo el círculo */
+/* Nombre bajo el cÃ­rculo */
 .rsi-nombre {
   font-family: var(--fuente-titulos);
   font-weight: 700;
@@ -869,7 +870,7 @@ address {
   text-transform: uppercase;
 }
 
-/* Colores específicos de cada red / sección */
+/* Colores especÃ­ficos de cada red / secciÃ³n */
 .rsi-musicales  { background: linear-gradient(135deg, #1a1a2e, #C8102E); }
 .rsi-somalo     { background: linear-gradient(135deg, #1a4a1a, #2e7d1e); }
 .rsi-whatsapp   { background: #25D366; }
@@ -878,9 +879,9 @@ address {
 .rsi-flickr     { background: linear-gradient(135deg, #ff0084, #0063dc); }
 
 
-/* ════════════════════════════════════════════════════════
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    12. CONTACTO
-   ════════════════════════════════════════════════════════ */
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 .contacto-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -928,9 +929,9 @@ address {
 }
 
 
-/* ════════════════════════════════════════════════════════
-   13. LEGAL (CANAL DENUNCIAS / PROTECCIÓN DE DATOS)
-   ════════════════════════════════════════════════════════ */
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   13. LEGAL (CANAL DENUNCIAS / PROTECCIÃN DE DATOS)
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 .legal-seccion {
   padding: 40px 0;
 }
@@ -950,7 +951,7 @@ address {
   min-width: 200px;
 }
 
-/* Botón "Leer más" / "Leer menos" */
+/* BotÃ³n "Leer mÃ¡s" / "Leer menos" */
 .legal-expandir {
   flex-shrink: 0;
   background: var(--color-azul-marino);
@@ -986,7 +987,7 @@ address {
   display: none;
 }
 
-/* Eliminar uso del atributo hidden — ya no se usa */
+/* Eliminar uso del atributo hidden â ya no se usa */
 .legal-texto-completo[hidden] {
   display: none;
 }
@@ -1020,7 +1021,7 @@ address {
   margin-bottom: 4px;
 }
 
-/* Enlace-botón dentro del texto legal */
+/* Enlace-botÃ³n dentro del texto legal */
 .legal-enlace-boton {
   display: inline-block;
   margin-top: 12px;
@@ -1042,9 +1043,9 @@ address {
 }
 
 
-/* ════════════════════════════════════════════════════════
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    14. TRANSPARENCIA Y PATROCINADORES
-   ════════════════════════════════════════════════════════ */
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 .transparencia-seccion {
   background: var(--color-gris-claro);
   padding: 48px 0;
@@ -1108,9 +1109,9 @@ address {
 }
 
 
-/* ════════════════════════════════════════════════════════
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    15. FOOTER
-   ════════════════════════════════════════════════════════ */
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 .footer-principal {
   background: var(--color-rojo);
   padding: 28px 0;
@@ -1126,7 +1127,7 @@ address {
   flex-wrap: wrap;
 }
 
-/* Logo del colegio en el footer — ya viene en blanco, no necesita filtro */
+/* Logo del colegio en el footer â ya viene en blanco, no necesita filtro */
 .footer-logo-colegio img {
   height: 52px;
   max-width: 200px;
@@ -1167,23 +1168,23 @@ address {
 }
 
 
-/* ════════════════════════════════════════════════════════
-   RESPONSIVE – ADAPTACIÓN A PANTALLAS PEQUEÑAS
-   ════════════════════════════════════════════════════════
-   Los cambios de diseño para móviles y tabletas van aquí.
-   @media (max-width: 768px) = tabletas y móviles
-   @media (max-width: 480px) = móviles pequeños
-   ════════════════════════════════════════════════════════ */
+/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   RESPONSIVE â ADAPTACIÃN A PANTALLAS PEQUEÃAS
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   Los cambios de diseÃ±o para mÃ³viles y tabletas van aquÃ­.
+   @media (max-width: 768px) = tabletas y mÃ³viles
+   @media (max-width: 480px) = mÃ³viles pequeÃ±os
+   ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 
 @media (max-width: 768px) {
 
-  /* Header: ocultar menú horizontal, mostrar hamburguesa */
+  /* Header: ocultar menÃº horizontal, mostrar hamburguesa */
   .header-nav { display: none; }
-  /* Botón Admin siempre visible aunque el nav esté oculto */
+  /* BotÃ³n Admin siempre visible aunque el nav estÃ© oculto */
   .btn-admin { display: inline-flex !important; flex-shrink: 0; margin-left: auto; }
   .menu-movil-btn { display: flex; }
 
-  /* Hero más compacto */
+  /* Hero mÃ¡s compacto */
   .hero { min-height: 380px; }
   .hero-contenido { padding: 44px 20px; }
 
@@ -1209,18 +1210,18 @@ address {
 }
 
 @media (max-width: 480px) {
-  /* Reducir espaciado en móviles pequeños */
+  /* Reducir espaciado en mÃ³viles pequeÃ±os */
   :root { --espaciado-seccion: 40px; }
   .seccion-titulo { font-size: 1.4rem; }
   .hero h1 { font-size: 1.8rem; }
 }
 
-/* PDF embed: no funciona en iOS/móvil — ocultar y mostrar solo botones */
+/* PDF embed: no funciona en iOS/mÃ³vil â ocultar y mostrar solo botones */
 @media (max-width: 768px) {
   .pdf-tarjeta embed { display: none; }
   .pdf-tarjeta [style*="height:320px"] { height: 80px !important; background: #f0f0f0 !important; }
   .pdf-tarjeta [style*="height:320px"]::before {
-    content: '📄';
+    content: 'ð';
     font-size: 2rem;
     display: flex;
     align-items: center;

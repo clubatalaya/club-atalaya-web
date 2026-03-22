@@ -59,44 +59,115 @@ function toggleLegal(id){
 var WORKER_URL='https://solitary-waterfall-4e04club-atalaya-api.clubatalaya-18e.workers.dev';
 
 /* SLIDER DE CARTELES */
-function crearSlider(contenedor,carteles){
-  if(!carteles||!carteles.length)return;
-  if(carteles.length===1){
-    var c=carteles[0];
-    var url=WORKER_URL+'/api/archivo/'+encodeURIComponent(c.key);
-    var img=document.createElement('img');
-    img.src=url;img.alt='Cartel';img.className='cartel-imagen';
-    img.onerror=function(){contenedor.classList.add('cartel-vacio');};
-    if(c.enlace){var a=document.createElement('a');a.href=c.enlace;a.target='_blank';a.rel='noopener';a.className='cartel-enlace';a.appendChild(img);contenedor.appendChild(a);}
-    else contenedor.appendChild(img);
-    return;
+function crearSlider(contenedor, carteles) {
+  if (!carteles || !carteles.length) return;
+
+  // Wrapper principal del cartel
+  var wrap = document.createElement('div');
+  wrap.style.cssText = 'position:relative;border-radius:10px;overflow:hidden;background:#1a1a2e;box-shadow:0 4px 16px rgba(0,0,0,.15)';
+
+  if (carteles.length === 1) {
+    var c = carteles[0];
+    renderCartelItem(wrap, c);
+  } else {
+    // Slider con múltiples carteles
+    var slides = document.createElement('div');
+    slides.style.cssText = 'display:flex;transition:transform .4s ease;will-change:transform';
+    carteles.forEach(function(c) {
+      var slide = document.createElement('div');
+      slide.style.cssText = 'min-width:100%;position:relative';
+      renderCartelItem(slide, c);
+      slides.appendChild(slide);
+    });
+    wrap.appendChild(slides);
+
+    // Controles
+    if (carteles.length > 1) {
+      var idx2 = 0;
+      function goTo(n) {
+        idx2 = (n + carteles.length) % carteles.length;
+        slides.style.transform = 'translateX(-' + (idx2 * 100) + '%)';
+        dots && dots.querySelectorAll('.dot').forEach(function(d, i) {
+          d.style.opacity = i === idx2 ? '1' : '0.4';
+        });
+      }
+      var prev = document.createElement('button');
+      prev.innerHTML = '&#8249;';
+      prev.style.cssText = 'position:absolute;left:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:1.4rem;cursor:pointer;z-index:10;line-height:1';
+      prev.onclick = function(e) { e.stopPropagation(); goTo(idx2 - 1); };
+      var next = document.createElement('button');
+      next.innerHTML = '&#8250;';
+      next.style.cssText = 'position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:1.4rem;cursor:pointer;z-index:10;line-height:1';
+      next.onclick = function(e) { e.stopPropagation(); goTo(idx2 + 1); };
+      var dots = document.createElement('div');
+      dots.style.cssText = 'position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:10';
+      carteles.forEach(function(_, i) {
+        var dot = document.createElement('span');
+        dot.className = 'dot';
+        dot.style.cssText = 'width:8px;height:8px;border-radius:50%;background:#fff;opacity:' + (i === 0 ? '1' : '0.4') + ';cursor:pointer';
+        dot.onclick = function(e) { e.stopPropagation(); goTo(i); };
+        dots.appendChild(dot);
+      });
+      wrap.appendChild(prev);
+      wrap.appendChild(next);
+      wrap.appendChild(dots);
+      // Autoplay
+      var timer = setInterval(function() { goTo(idx2 + 1); }, 5000);
+      wrap.addEventListener('mouseenter', function() { clearInterval(timer); });
+      wrap.addEventListener('mouseleave', function() { timer = setInterval(function() { goTo(idx2 + 1); }, 5000); });
+    }
   }
-  contenedor.style.position='relative';contenedor.style.overflow='hidden';
-  var track=document.createElement('div');track.style.cssText='display:flex;transition:transform .4s ease;will-change:transform';
-  carteles.forEach(function(c){
-    var slide=document.createElement('div');slide.style.cssText='min-width:100%;position:relative';
-    var url=WORKER_URL+'/api/archivo/'+encodeURIComponent(c.key);
-    var img=document.createElement('img');img.src=url;img.alt='Cartel';img.className='cartel-imagen';img.style.cssText='width:100%;height:280px;object-fit:cover;display:block';
-    img.onerror=function(){slide.style.display='none';};
-    if(c.enlace){var a=document.createElement('a');a.href=c.enlace;a.target='_blank';a.rel='noopener';a.appendChild(img);slide.appendChild(a);}
-    else slide.appendChild(img);
-    track.appendChild(slide);
-  });
-  contenedor.appendChild(track);
-  var btnStyle='position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);color:#fff;border:none;border-radius:50%;width:30px;height:30px;font-size:1rem;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;';
-  var prev=document.createElement('button');prev.innerHTML='&#8249;';prev.setAttribute('aria-label','Anterior');prev.style.cssText=btnStyle+'left:6px';
-  var next=document.createElement('button');next.innerHTML='&#8250;';next.setAttribute('aria-label','Siguiente');next.style.cssText=btnStyle+'right:6px';
-  var dots=document.createElement('div');dots.style.cssText='position:absolute;bottom:6px;left:0;right:0;display:flex;justify-content:center;gap:5px;z-index:5';
-  carteles.forEach(function(_,i){var dot=document.createElement('span');dot.style.cssText='width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,'+(i===0?'1':'.5')+');display:inline-block;cursor:pointer';dots.appendChild(dot);});
-  var current=0;
-  function goTo(idx){current=(idx+carteles.length)%carteles.length;track.style.transform='translateX(-'+(current*100)+'%)';Array.from(dots.children).forEach(function(d,i){d.style.background='rgba(255,255,255,'+(i===current?'1':'.5')+')';});}
-  prev.onclick=function(){goTo(current-1);};next.onclick=function(){goTo(current+1);};
-  Array.from(dots.children).forEach(function(d,i){d.onclick=function(){goTo(i);};});
-  var timer=setInterval(function(){goTo(current+1);},5000);
-  contenedor.addEventListener('mouseenter',function(){clearInterval(timer);});
-  contenedor.addEventListener('mouseleave',function(){timer=setInterval(function(){goTo(current+1);},5000);});
-  contenedor.appendChild(prev);contenedor.appendChild(next);contenedor.appendChild(dots);
+
+  contenedor.appendChild(wrap);
 }
+
+function renderCartelItem(parent, c) {
+  var url = WORKER_URL + '/api/archivo/' + encodeURIComponent(c.key);
+  var igUrl = c.enlaceInstagram || c.enlaceIG || null;
+  var customLink = (c.enlace && c.enlace !== igUrl) ? c.enlace : null;
+
+  // Imagen: altura fija, sin enlace directo a instagram
+  var img = document.createElement('img');
+  img.src = url;
+  img.alt = 'Cartel';
+  img.className = 'cartel-imagen';
+  img.style.cssText = 'width:100%;height:280px;object-fit:cover;display:block;cursor:' + (customLink ? 'pointer' : 'zoom-in');
+  img.onerror = function() { parent.style.display = 'none'; };
+
+  // Click en imagen: enlace configurado o lightbox
+  img.addEventListener('click', function() {
+    if (customLink) {
+      window.open(customLink, '_blank', 'noopener');
+    } else {
+      // Lightbox simple
+      var lb = document.createElement('div');
+      lb.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;display:flex;align-items:center;justify-content:center;cursor:zoom-out';
+      var lbImg = document.createElement('img');
+      lbImg.src = url;
+      lbImg.style.cssText = 'max-width:92vw;max-height:90vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.6)';
+      lb.appendChild(lbImg);
+      lb.onclick = function() { document.body.removeChild(lb); };
+      document.body.appendChild(lb);
+    }
+  });
+
+  parent.appendChild(img);
+
+  // Barra inferior: enlace "Ver en Instagram" (solo si hay URL de instagram)
+  var igLink = c.enlace || null; // El enlace configurado en admin lleva a instagram
+  if (igLink) {
+    var bar = document.createElement('a');
+    bar.href = igLink;
+    bar.target = '_blank';
+    bar.rel = 'noopener';
+    bar.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;background:#1a1a2e;color:#fff;font-size:.78rem;font-weight:600;text-decoration:none;opacity:.9';
+    bar.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> Ver en Instagram';
+    bar.onmouseenter = function() { this.style.opacity = '1'; };
+    bar.onmouseleave = function() { this.style.opacity = '.9'; };
+    parent.appendChild(bar);
+  }
+}
+
 
 function cargarCarteles(){
   fetch(WORKER_URL+'/api/carteles').then(function(r){return r.json();}).then(function(cfg){

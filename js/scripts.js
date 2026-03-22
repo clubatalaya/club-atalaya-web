@@ -76,7 +76,7 @@ function crearSlider(contenedor,carteles){
   carteles.forEach(function(c){
     var slide=document.createElement('div');slide.style.cssText='min-width:100%;position:relative';
     var url=WORKER_URL+'/api/archivo/'+encodeURIComponent(c.key);
-    var img=document.createElement('img');img.src=url;img.alt='Cartel';img.className='cartel-imagen';img.style.width='100%';
+    var img=document.createElement('img');img.src=url;img.alt='Cartel';img.className='cartel-imagen';img.style.cssText='width:100%;height:280px;object-fit:cover;display:block';
     img.onerror=function(){slide.style.display='none';};
     if(c.enlace){var a=document.createElement('a');a.href=c.enlace;a.target='_blank';a.rel='noopener';a.appendChild(img);slide.appendChild(a);}
     else slide.appendChild(img);
@@ -280,3 +280,25 @@ cargarComunicados();
 cargarVideos();
 cargarHero();
 cargarRedes();
+
+// ── Reparar emails ofuscados por Cloudflare ──────────────────────────────
+// Cloudflare obfusca automáticamente emails en el HTML. Esta función los restaura.
+(function repararEmails() {
+  var u = 'clubatalaya';
+  var d = 'salesianossantander.org';
+  var email = u + '@' + d;
+  var mailto = 'mailto:' + email;
+
+  // Restaurar spans con data-cfemail
+  document.querySelectorAll('[data-cfemail]').forEach(function(span) {
+    span.textContent = email;
+    var a = span.closest('a');
+    if (a) a.href = mailto;
+  });
+
+  // Restaurar enlaces mailto vacíos
+  document.querySelectorAll('a[href="mailto:"], a[href^="mailto:#"]').forEach(function(a) {
+    a.href = mailto;
+    if (!a.textContent.includes('@')) a.textContent = email;
+  });
+})();

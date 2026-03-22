@@ -140,6 +140,14 @@ function cargarCarteles(){
       var carteles=cfg[sec]||[];
       if(!carteles.length){wrapper.style.display='none';return;}
       wrapper.style.display='';
+      // Para catecumenado: actualizar nombre e icono desde config del admin
+      if(sec==='catecumenado'){
+        var nomEl=document.getElementById('catec-nombre');
+        var icoEl=document.getElementById('catec-icono');
+        if(nomEl&&cfg.catecumenado_nombre) nomEl.textContent=cfg.catecumenado_nombre;
+        if(icoEl&&cfg.catecumenado_icono) icoEl.textContent=cfg.catecumenado_icono;
+        if(icoEl&&cfg.catecumenado_color) icoEl.style.background=cfg.catecumenado_color;
+      }
       // Rellenar el seccion-card-cuerpo (no la cabecera)
       var cuerpo=document.getElementById('cuerpo-'+sec);
       if(cuerpo){

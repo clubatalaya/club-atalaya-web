@@ -244,49 +244,34 @@
 
       <!-- ── Secciones adicionales: Somalo, Musicales, Catecumenado ──
            Aparecen solo si tienen carteles subidos en el panel admin -->
-      <div id="slider-somalo" class="seccion-cartel-dinamico" style="display:none;margin-top:24px">
-        <h3 class="seccion-subtitulo" style="margin-bottom:12px">Somalo</h3>
-      </div>
-      <div id="slider-musicales" class="seccion-cartel-dinamico" style="display:none;margin-top:24px">
-        <h3 class="seccion-subtitulo" style="margin-bottom:12px">Musicales</h3>
-      </div>
-      <div id="slider-catecumenado" class="seccion-cartel-dinamico" style="display:none;margin-top:24px">
-        <h3 class="seccion-subtitulo" style="margin-bottom:12px">Catecumenado</h3>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ════════════════════════════════════════════════════
-       SECCIÓN: COMUNICADOS (PDFs)
-       ════════════════════════════════════════════════════
-       CÓMO AÑADIR UN NUEVO PDF:
-       1. Sube el PDF a tu Google Drive
-       2. Compártelo: clic derecho → Compartir → "Cualquiera con el enlace" → Lector
-       3. Copia el enlace compartido
-       4. Duplica uno de los bloques <article class="pdf-tarjeta"> de abajo
-       5. Cambia el href, el título y la descripción
-       ════════════════════════════════════════════════════ -->
-  <section class="seccion seccion-clara" id="comunicados">
-    <div class="contenedor">
-
-      <h2 class="seccion-titulo">Comunicados</h2>
-      <p class="seccion-subtitulo">Documentos e información para las familias y participantes del Club Atalaya</p>
-
-      <div class="pdf-grid" style="justify-items:center" id="comunicadosGrid">
-
-        <!-- ── PDF 1 ── -->
-        <!-- EDITAR: cambia el href, título y descripción por los de tu documento real -->
-        <article class="pdf-tarjeta" data-pdf-url="https://drive.google.com/file/d/XXXXXXXXXXXXXXXX/view">
-          <div class="pdf-icono">
-            <svg viewBox="0 0 48 48" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="48" height="48" rx="8" fill="#C8102E" opacity="0.12"/>
-              <path d="M14 8h14l10 10v22a2 2 0 01-2 2H14a2 2 0 01-2-2V10a2 2 0 012-2z" fill="#C8102E" opacity="0.2" stroke="#C8102E" stroke-width="1.5"/>
-              <path d="M28 8v10h10" stroke="#C8102E" stroke-width="1.5" fill="none"/>
-              <text x="24" y="34" text-anchor="middle" font-size="8" font-weight="700" fill="#C8102E" font-family="sans-serif">PDF</text>
-            </svg>
+      <div id="slider-somalo" class="seccion-card" style="display:none;margin-top:0">
+          <div class="seccion-card-cabecera">
+            <span class="seccion-card-logo-wrap">
+              <img src="imagenes/logotipos/logo-atalaya-64x64.png" alt="Somalo" width="40" height="40" style="border-radius:50%;object-fit:cover">
+            </span>
+            <span class="seccion-card-nombre">Somalo</span>
           </div>
-          <!-- EDITAR: título del comunicado -->
+          <div class="seccion-cartel-cuerpo"></div>
+        </div>
+        <div id="slider-musicales" class="seccion-card" style="display:none;margin-top:0">
+          <div class="seccion-card-cabecera">
+            <span class="seccion-card-logo-wrap">
+              <img src="imagenes/logotipos/logo-atalaya-64x64.png" alt="Musicales" width="40" height="40" style="border-radius:50%;object-fit:cover">
+            </span>
+            <span class="seccion-card-nombre">Musicales</span>
+          </div>
+          <div class="seccion-cartel-cuerpo"></div>
+        </div>
+        <div id="slider-catecumenado" class="seccion-card" style="display:none;margin-top:0">
+          <div class="seccion-card-cabecera">
+            <span class="seccion-card-logo-wrap">
+              <img src="imagenes/logotipos/logo-atalaya-64x64.png" alt="Catecumenado" width="40" height="40" style="border-radius:50%;object-fit:cover">
+            </span>
+            <span class="seccion-card-nombre">Catecumenado</span>
+          </div>
+          <div class="seccion-cartel-cuerpo"></div>
+        </div>
+        <!-- EDITAR: título del comunicado -->
           <div class="pdf-info">
             <h3>Circular informativa</h3>
             <!-- EDITAR: descripción breve -->

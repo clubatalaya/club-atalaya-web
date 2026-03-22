@@ -164,28 +164,120 @@ function renderCartelItem(parent, c) {
 
 function cargarCarteles(){
   fetch(WORKER_URL+'/api/carteles').then(function(r){return r.json();}).then(function(cfg){
+
+    // Secciones estáticas: Oratorio y Centro Juvenil
+    // El contenedor es la .seccion-card-cuerpo que ya tiene la cabecera en el HTML
     ['oratorio','centrojuvenil'].forEach(function(sec){
-      var idImg=sec==='oratorio'?'cartelOratorio':'cartelCentroJuvenil';
-      var imgEl=document.getElementById(idImg);if(!imgEl)return;
-      var carteles=cfg[sec]||[];if(!carteles.length)return;
-      var contenedor=imgEl.parentElement;
-      if(carteles.length>=1){
-        imgEl.style.display='none';
-        // Remove existing instagram badge if present
-        var badge=contenedor.querySelector('.cartel-ig-link,.cartel-ig-badge');if(badge)badge.remove();
-        crearSlider(contenedor,carteles);}
-      if(false&&carteles.length===1){imgEl.src=WORKER_URL+'/api/archivo/'+encodeURIComponent(carteles[0].key);
-        if(carteles[0].enlace){var a=document.createElement('a');a.href=carteles[0].enlace;a.target='_blank';a.rel='noopener';imgEl.parentNode.insertBefore(a,imgEl);a.appendChild(imgEl);}
-      }
+      var idImg = sec==='oratorio' ? 'cartelOratorio' : 'cartelCentroJuvenil';
+      var imgEl = document.getElementById(idImg); if(!imgEl) return;
+      var carteles = cfg[sec]||[];
+      var enlaceSeccion = cfg[sec+'_enlace'] || null;
+      var contenedor = imgEl.parentElement;
+      // Limpiar contenido previo dinámico
+      var prev = contenedor.querySelector('.cartel-slider-wrap,.cartel-ig-link,.cartel-ig-badge');
+      while(prev){prev.remove();prev=contenedor.querySelector('.cartel-slider-wrap,.cartel-ig-link,.cartel-ig-badge');}
+      if(!carteles.length){imgEl.style.display='block';return;}
+      imgEl.style.display='none';
+      // Render slider de imágenes
+      renderSliderImagenes(contenedor, carteles);
+      // Pie: enlace de sección (Instagram u otra red)
+      if(enlaceSeccion) renderPieSeccion(contenedor, enlaceSeccion);
     });
+
+    // Secciones dinámicas: Somalo, Musicales, Catecumenado
+    // Cada una tiene un div wrapper en el HTML con cabecera propia
     ['somalo','musicales','catecumenado'].forEach(function(sec){
-      var wrapper=document.getElementById('slider-'+sec);if(!wrapper)return;
-      var carteles=cfg[sec]||[];
+      var wrapper = document.getElementById('slider-'+sec); if(!wrapper) return;
+      var carteles = cfg[sec]||[];
+      var enlaceSeccion = cfg[sec+'_enlace'] || null;
       if(!carteles.length){wrapper.style.display='none';return;}
-      wrapper.style.display='block';crearSlider(wrapper,carteles);
+      wrapper.style.display='block';
+      // Limpiar el área de imágenes (no la cabecera h3)
+      var cuerpo = wrapper.querySelector('.seccion-cartel-cuerpo');
+      if(!cuerpo){
+        cuerpo = document.createElement('div');
+        cuerpo.className='seccion-cartel-cuerpo';
+        wrapper.appendChild(cuerpo);
+      }
+      cuerpo.innerHTML='';
+      renderSliderImagenes(cuerpo, carteles);
+      // Pie: enlace de sección
+      var piePrev = wrapper.querySelector('.cartel-pie-seccion');
+      if(piePrev) piePrev.remove();
+      if(enlaceSeccion) renderPieSeccion(wrapper, enlaceSeccion);
     });
+
   }).catch(function(){});
 }
+
+// Render del slider de imágenes de una sección (sin cabecera ni pie)
+function renderSliderImagenes(contenedor, carteles){
+  var wrap = document.createElement('div');
+  wrap.className = 'cartel-slider-wrap';
+  wrap.style.cssText = 'overflow:hidden;border-radius:0 0 8px 8px;position:relative;background:#000';
+
+  if(carteles.length === 1){
+    renderCartelItem(wrap, carteles[0]);
+  } else {
+    // Slider múltiple
+    var track = document.createElement('div');
+    track.style.cssText = 'display:flex;transition:transform .4s ease';
+    carteles.forEach(function(c){
+      var slide = document.createElement('div');
+      slide.style.cssText = 'min-width:100%;flex-shrink:0';
+      renderCartelItem(slide, c);
+      track.appendChild(slide);
+    });
+    wrap.appendChild(track);
+    // Controles
+    var cur = 0;
+    function goTo(n){ cur=(n+carteles.length)%carteles.length; track.style.transform='translateX(-'+(cur*100)+'%)'; dots&&dots.querySelectorAll('.dot').forEach(function(d,i){d.style.opacity=i===cur?'1':'0.4';}); }
+    var btn = function(html,side){var b=document.createElement('button');b.innerHTML=html;b.style.cssText='position:absolute;'+side+':8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:1.3rem;cursor:pointer;z-index:10;line-height:1';return b;};
+    var prev=btn('&#8249;','left'); prev.onclick=function(e){e.stopPropagation();goTo(cur-1);};
+    var next=btn('&#8250;','right'); next.onclick=function(e){e.stopPropagation();goTo(cur+1);};
+    var dots=document.createElement('div');
+    dots.style.cssText='position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:10';
+    carteles.forEach(function(_,i){var d=document.createElement('span');d.className='dot';d.style.cssText='width:8px;height:8px;border-radius:50%;background:#fff;opacity:'+(i===0?'1':'0.4')+';cursor:pointer';d.onclick=function(e){e.stopPropagation();goTo(i);};dots.appendChild(d);});
+    wrap.appendChild(prev);wrap.appendChild(next);wrap.appendChild(dots);
+    var t=setInterval(function(){goTo(cur+1);},5000);
+    wrap.addEventListener('mouseenter',function(){clearInterval(t);});
+    wrap.addEventListener('mouseleave',function(){t=setInterval(function(){goTo(cur+1);},5000);});
+  }
+  contenedor.appendChild(wrap);
+}
+
+// Render de un cartel individual (imagen + click)
+function renderCartelItem(parent, c){
+  var url = WORKER_URL+'/api/archivo/'+encodeURIComponent(c.key);
+  var enlaceCartel = c.enlace||null;
+  var img = document.createElement('img');
+  img.src=url; img.alt='Cartel'; img.className='cartel-imagen';
+  img.style.cssText='width:100%;height:auto;display:block;cursor:'+(enlaceCartel?'pointer':'zoom-in');
+  img.onerror=function(){parent.style.display='none';};
+  img.addEventListener('click',function(){
+    if(enlaceCartel){window.open(enlaceCartel,'_blank','noopener');return;}
+    var lb=document.createElement('div');
+    lb.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;display:flex;align-items:center;justify-content:center;cursor:zoom-out';
+    var lbImg=document.createElement('img');lbImg.src=url;
+    lbImg.style.cssText='max-width:94vw;max-height:92vh;border-radius:6px;box-shadow:0 8px 40px rgba(0,0,0,.6)';
+    lb.appendChild(lbImg);lb.onclick=function(){document.body.removeChild(lb);};
+    document.body.appendChild(lb);
+  });
+  parent.appendChild(img);
+}
+
+// Render del pie de sección (enlace a Instagram u otra red)
+function renderPieSeccion(contenedor, enlace){
+  var pie=document.createElement('a');
+  pie.href=enlace; pie.target='_blank'; pie.rel='noopener';
+  pie.className='cartel-pie-seccion';
+  pie.style.cssText='display:flex;align-items:center;justify-content:center;gap:7px;padding:9px 14px;background:#1a1a2e;color:#fff;font-size:.8rem;font-weight:600;text-decoration:none;letter-spacing:.02em';
+  pie.innerHTML='<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> Ver en Instagram';
+  pie.onmouseenter=function(){this.style.opacity='.8';};
+  pie.onmouseleave=function(){this.style.opacity='1';};
+  contenedor.appendChild(pie);
+}
+
 
 /* COMUNICADOS CON MINIATURA EN LA WEB */
 function cargarComunicados(){

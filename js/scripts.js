@@ -198,10 +198,19 @@ function cargarComunicados(){
         var thumbWrap=document.createElement('div');
         thumbWrap.style.cssText='position:relative;height:320px;background:#f5f5f5;overflow:hidden;flex-shrink:0';
 
-        var embed=document.createElement('embed');
-        embed.src=url+'#toolbar=0&navpanes=0&scrollbar=0&view=FitH';
-        embed.type='application/pdf';
-        embed.style.cssText='width:100%;height:100%;border:none;pointer-events:none';
+        var isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var embed;
+        if(!isMobile){
+          embed=document.createElement('embed');
+          embed.src=url+'#toolbar=0&navpanes=0&scrollbar=0&view=FitH';
+          embed.type='application/pdf';
+          embed.style.cssText='width:100%;height:100%;border:none;pointer-events:none';
+        } else {
+          // En móvil iOS/Android el embed PDF no funciona — mostrar icono
+          embed=document.createElement('div');
+          embed.style.cssText='width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#f8f8f8;color:#666';
+          embed.innerHTML='<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg><span style="font-size:.78rem;font-weight:600;color:#888">Toca para ver</span>';
+        }
 
         // Overlay con botones
         var overlay=document.createElement('div');

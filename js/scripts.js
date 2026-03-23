@@ -121,7 +121,32 @@ function crearSlider(contenedor,carteles){
 }
 
 function cargarCarteles(){
-  fetch(WORKER_URL+'/api/carteles').then(function(r){return r.json();}).then(function(cfg){
+  // Función auxiliar para aplicar icono de sección desde config
+  function aplicarIconoSeccion(icoEl, cfgKey, appCfg){
+    if(!icoEl) return;
+    var iconoKey=appCfg[cfgKey+'_iconoKey'];
+    if(iconoKey){
+      icoEl.innerHTML='';
+      var iconImg=document.createElement('img');
+      iconImg.src=WORKER_URL+'/api/archivo/'+encodeURIComponent(iconoKey);
+      iconImg.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%';
+      iconImg.onerror=function(){icoEl.innerHTML='';icoEl.textContent=appCfg[cfgKey+'_icono']||'⭐';};
+      icoEl.appendChild(iconImg);
+    } else if(appCfg[cfgKey+'_icono']){
+      icoEl.innerHTML='';
+      icoEl.textContent=appCfg[cfgKey+'_icono'];
+    }
+    if(appCfg[cfgKey+'_color']) icoEl.style.background=appCfg[cfgKey+'_color'];
+  }
+
+  // Cargamos carteles Y config en paralelo para tener los iconoKey disponibles
+  Promise.all([
+    fetch(WORKER_URL+'/api/carteles').then(function(r){return r.json();}),
+    fetch(WORKER_URL+'/api/config').then(function(r){return r.json();})
+  ]).then(function(results){
+    var cfg=results[0]; var appCfg=results[1];
+
+    // ── Oratorio y Centro Juvenil ──
     ['oratorio','centrojuvenil'].forEach(function(sec){
       var idImg=sec==='oratorio'?'cartelOratorio':'cartelCentroJuvenil';
       var imgEl=document.getElementById(idImg);if(!imgEl)return;
@@ -134,46 +159,33 @@ function cargarCarteles(){
         crearSlider(contenedor,carteles);
         if(igEl)contenedor.appendChild(igEl);
       }
+      // Aplicar icono configurable al logo de cabecera
+      var icoEl=document.getElementById('icono-'+sec);
+      aplicarIconoSeccion(icoEl, sec, appCfg);
     });
     // Mapa de ids de icono/nombre por sección dinámica
     var SECCION_IDS={
-      somalo:    {icono:'icono-somalo',   nombre:null},
-      musicales: {icono:'icono-musicales',nombre:null},
-      catecumenado:{icono:'catec-icono',  nombre:'catec-nombre'},
-      otros2:    {icono:'icono-otros2',   nombre:'nombre-otros2'},
-      otros3:    {icono:'icono-otros3',   nombre:'nombre-otros3'}
+      somalo:      {icono:'icono-somalo',    nombre:null},
+      musicales:   {icono:'icono-musicales', nombre:null},
+      catecumenado:{icono:'catec-icono',     nombre:'catec-nombre'},
+      otros2:      {icono:'icono-otros2',    nombre:'nombre-otros2'},
+      otros3:      {icono:'icono-otros3',    nombre:'nombre-otros3'}
     };
+    // Orden igual al que aparece en la web: somalo, musicales, catecumenado, otros2, otros3
     ['somalo','musicales','catecumenado','otros2','otros3'].forEach(function(sec){
       var wrapper=document.getElementById('slider-'+sec);if(!wrapper)return;
       var carteles=cfg[sec]||[];
       if(!carteles.length){wrapper.style.display='none';return;}
       wrapper.style.display='';
-      // Actualizar nombre e icono desde config del admin
+      // Actualizar nombre e icono desde appCfg (config) — NO desde cfg (carteles)
       var ids=SECCION_IDS[sec]||{};
       var icoEl=ids.icono?document.getElementById(ids.icono):null;
       var nomEl=ids.nombre?document.getElementById(ids.nombre):null;
       var cfgKey=sec==='catecumenado'?'catecumenado':sec;
       // Nombre
-      if(nomEl&&cfg[cfgKey+'_nombre']) nomEl.textContent=cfg[cfgKey+'_nombre'];
-      // Color de fondo del círculo
-      if(icoEl&&cfg[cfgKey+'_color']) icoEl.style.background=cfg[cfgKey+'_color'];
-      // Icono: imagen custom o emoji
-      if(icoEl){
-        var iconoKey=cfg[cfgKey+'_iconoKey'];
-        if(iconoKey){
-          icoEl.innerHTML='';
-          var iconImg=document.createElement('img');
-          iconImg.src=WORKER_URL+'/api/archivo/'+encodeURIComponent(iconoKey);
-          iconImg.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%';
-          iconImg.onerror=function(){
-            icoEl.innerHTML='';
-            icoEl.textContent=cfg[cfgKey+'_icono']||icoEl.dataset.default||'⭐';
-          };
-          icoEl.appendChild(iconImg);
-        } else if(cfg[cfgKey+'_icono']){
-          icoEl.textContent=cfg[cfgKey+'_icono'];
-        }
-      }
+      if(nomEl&&appCfg[cfgKey+'_nombre']) nomEl.textContent=appCfg[cfgKey+'_nombre'];
+      // Icono (imagen o emoji) + color — usando la función auxiliar
+      aplicarIconoSeccion(icoEl, cfgKey, appCfg);
       // Rellenar el seccion-card-cuerpo (no la cabecera)
       var cuerpo=document.getElementById('cuerpo-'+sec);
       if(cuerpo){

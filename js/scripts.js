@@ -342,8 +342,6 @@ function cargarRedes(){
         imgIcon.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%;display:block';
         imgIcon.onerror=function(){this.parentElement.innerHTML=(SVG[r.icono]||SVG.otro)+'<span class="rsi-etiqueta">'+r.nombre+'</span>';};
         circulo.appendChild(imgIcon);
-        var etiq=document.createElement('span');etiq.className='rsi-etiqueta';etiq.textContent=r.nombre;
-        circulo.appendChild(etiq);
       } else {
         circulo.innerHTML=(SVG[r.icono]||SVG.otro)+'<span class="rsi-etiqueta">'+r.nombre+'</span>';
       }

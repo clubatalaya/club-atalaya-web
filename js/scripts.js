@@ -135,18 +135,44 @@ function cargarCarteles(){
         if(igEl)contenedor.appendChild(igEl);
       }
     });
-    ['somalo','musicales','catecumenado'].forEach(function(sec){
+    // Mapa de ids de icono/nombre por sección dinámica
+    var SECCION_IDS={
+      somalo:    {icono:'icono-somalo',   nombre:null},
+      musicales: {icono:'icono-musicales',nombre:null},
+      catecumenado:{icono:'catec-icono',  nombre:'catec-nombre'},
+      otros2:    {icono:'icono-otros2',   nombre:'nombre-otros2'},
+      otros3:    {icono:'icono-otros3',   nombre:'nombre-otros3'}
+    };
+    ['somalo','musicales','catecumenado','otros2','otros3'].forEach(function(sec){
       var wrapper=document.getElementById('slider-'+sec);if(!wrapper)return;
       var carteles=cfg[sec]||[];
       if(!carteles.length){wrapper.style.display='none';return;}
       wrapper.style.display='';
-      // Para catecumenado: actualizar nombre e icono desde config del admin
-      if(sec==='catecumenado'){
-        var nomEl=document.getElementById('catec-nombre');
-        var icoEl=document.getElementById('catec-icono');
-        if(nomEl&&cfg.catecumenado_nombre) nomEl.textContent=cfg.catecumenado_nombre;
-        if(icoEl&&cfg.catecumenado_icono) icoEl.textContent=cfg.catecumenado_icono;
-        if(icoEl&&cfg.catecumenado_color) icoEl.style.background=cfg.catecumenado_color;
+      // Actualizar nombre e icono desde config del admin
+      var ids=SECCION_IDS[sec]||{};
+      var icoEl=ids.icono?document.getElementById(ids.icono):null;
+      var nomEl=ids.nombre?document.getElementById(ids.nombre):null;
+      var cfgKey=sec==='catecumenado'?'catecumenado':sec;
+      // Nombre
+      if(nomEl&&cfg[cfgKey+'_nombre']) nomEl.textContent=cfg[cfgKey+'_nombre'];
+      // Color de fondo del círculo
+      if(icoEl&&cfg[cfgKey+'_color']) icoEl.style.background=cfg[cfgKey+'_color'];
+      // Icono: imagen custom o emoji
+      if(icoEl){
+        var iconoKey=cfg[cfgKey+'_iconoKey'];
+        if(iconoKey){
+          icoEl.innerHTML='';
+          var iconImg=document.createElement('img');
+          iconImg.src=WORKER_URL+'/api/archivo/'+encodeURIComponent(iconoKey);
+          iconImg.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%';
+          iconImg.onerror=function(){
+            icoEl.innerHTML='';
+            icoEl.textContent=cfg[cfgKey+'_icono']||icoEl.dataset.default||'⭐';
+          };
+          icoEl.appendChild(iconImg);
+        } else if(cfg[cfgKey+'_icono']){
+          icoEl.textContent=cfg[cfgKey+'_icono'];
+        }
       }
       // Rellenar el seccion-card-cuerpo (no la cabecera)
       var cuerpo=document.getElementById('cuerpo-'+sec);

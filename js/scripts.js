@@ -125,18 +125,27 @@ function cargarCarteles(){
   function aplicarIconoSeccion(icoEl, cfgKey, appCfg){
     if(!icoEl) return;
     var iconoKey=appCfg[cfgKey+'_iconoKey'];
+    var esImg=(icoEl.tagName==='IMG'); // Oratorio/CentroJuvenil usan <img>, el resto <span>
     if(iconoKey){
-      icoEl.innerHTML='';
-      var iconImg=document.createElement('img');
-      iconImg.src=WORKER_URL+'/api/archivo/'+encodeURIComponent(iconoKey);
-      iconImg.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%';
-      iconImg.onerror=function(){icoEl.innerHTML='';icoEl.textContent=appCfg[cfgKey+'_icono']||'⭐';};
-      icoEl.appendChild(iconImg);
-    } else if(appCfg[cfgKey+'_icono']){
+      var url=WORKER_URL+'/api/archivo/'+encodeURIComponent(iconoKey);
+      if(esImg){
+        // Actualizar src del <img> directamente
+        icoEl.src=url;
+        icoEl.style.cssText='width:52px;height:52px;border-radius:50%;object-fit:cover';
+        icoEl.onerror=function(){this.src='';};
+      } else {
+        icoEl.innerHTML='';
+        var iconImg=document.createElement('img');
+        iconImg.src=url;
+        iconImg.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%';
+        iconImg.onerror=function(){icoEl.innerHTML='';icoEl.textContent=appCfg[cfgKey+'_icono']||'⭐';};
+        icoEl.appendChild(iconImg);
+      }
+    } else if(appCfg[cfgKey+'_icono']&&!esImg){
       icoEl.innerHTML='';
       icoEl.textContent=appCfg[cfgKey+'_icono'];
     }
-    if(appCfg[cfgKey+'_color']) icoEl.style.background=appCfg[cfgKey+'_color'];
+    if(appCfg[cfgKey+'_color']&&!esImg) icoEl.style.background=appCfg[cfgKey+'_color'];
   }
 
   // Cargamos carteles Y config en paralelo para tener los iconoKey disponibles

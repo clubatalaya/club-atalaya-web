@@ -233,7 +233,7 @@ function cargarCarteles(){
 
 /* CANAL DE DENUNCIAS - carga titulo y textos desde el admin */
 function cargarCanalDenuncias(){
-  fetch(WORKER_URL+'/api/canal-denuncias').then(function(r){return r.json();}).then(function(d){
+  fetch(WORKER_URL+'/api/config').then(function(r){return r.json();}).then(function(d){
     var tit=document.getElementById('canalTituloWeb');
     if(tit&&d.titulo) tit.textContent=d.titulo;
     var res=document.getElementById('canalResumenWeb');

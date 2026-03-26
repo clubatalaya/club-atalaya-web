@@ -231,6 +231,34 @@ function cargarCarteles(){
   }).catch(function(){});
 }
 
+/* CANAL DE DENUNCIAS — carga título y textos desde el admin */
+function cargarCanalDenuncias(){
+  fetch(WORKER_URL+'/api/canal-denuncias').then(function(r){return r.json();}).then(function(d){
+    // Título
+    var tit=document.getElementById('canalTituloWeb');
+    if(tit&&d.titulo) tit.textContent=d.titulo;
+    // Resumen
+    var res=document.getElementById('canalResumenWeb');
+    if(res&&d.resumen) res.textContent=d.resumen;
+    // Texto completo — reemplazar contenido del div manteniendo el botón de formulario
+    if(d.completo){
+      var div=document.getElementById('denuncias');
+      if(div){
+        // Guardar el enlace al formulario si existe
+        var enlace=div.querySelector('.legal-enlace-boton');
+        var enlaceHtml=enlace?enlace.outerHTML:'';
+        // Convertir saltos de línea en párrafos
+        var parrafos=d.completo.split(/
+
++/).filter(function(p){return p.trim();});
+        var html=parrafos.map(function(p){return '<p>'+p.trim().replace(/
+/g,'<br>')+'</p>';}).join('');
+        div.innerHTML=html+(enlaceHtml||'');
+      }
+    }
+  }).catch(function(){});
+}
+
 /* COMUNICADOS CON MINIATURA EN LA WEB */
 function cargarComunicados(){
   fetch(WORKER_URL+'/api/comunicados').then(function(r){return r.json();}).then(function(lista){
@@ -407,6 +435,7 @@ comprobarEmbedInstagram('igOratorio','igOratorioFallback');
 comprobarEmbedInstagram('igCJ','igCJFallback');
 
 cargarCarteles();
+  cargarCanalDenuncias();
 cargarComunicados();
 cargarVideos();
 cargarHero();

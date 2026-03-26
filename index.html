@@ -554,18 +554,20 @@
   <section class="seccion legal-seccion">
     <div class="contenedor">
 
-      <h2 class="seccion-titulo">Canal de Denuncias</h2>
+      <!-- Título configurable desde el panel admin -->
+      <h2 class="seccion-titulo" id="canalTituloWeb">Canal de Denuncias</h2>
 
       <!-- Botón que muestra/oculta el texto completo -->
       <div class="legal-cabecera">
-        <p class="legal-resumen">
+        <!-- Texto resumen configurable desde el panel admin -->
+        <p class="legal-resumen" id="canalResumenWeb">
           La Inspectoría Salesiana Santiago el Mayor ha habilitado un canal de denuncias para comunicar de manera confidencial posibles irregularidades o incumplimientos éticos y normativos.
         </p>
         <button class="legal-expandir" id="btnDenuncias" aria-expanded="false" onclick="toggleLegal('denuncias')">Leer más +</button>
       </div>
 
       <!-- Texto completo (oculto por defecto, se expande al hacer clic) -->
-      <div class="legal-texto-completo oculto" id="denuncias">
+      <div class="legal-texto-completo oculto" id="denuncias" data-canal-completo="1">
         <p>
           El canal de denuncias es un elemento clave para promover una cultura ética, de transparencia y libre de conductas de corrupción, fraude o incumplimientos administrativos o penales, de acuerdo con la Ley 2/2023, de 20 de febrero, de protección de informantes.
         </p>

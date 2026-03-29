@@ -121,7 +121,7 @@ function crearSlider(contenedor,carteles){
 }
 
 function cargarCarteles(){
-  // FunciÃ³n auxiliar para aplicar icono de secciÃ³n desde config
+  // Función auxiliar para aplicar icono de sección desde config
   function aplicarIconoSeccion(icoEl, cfgKey, appCfg){
     if(!icoEl) return;
     var iconoKey=appCfg[cfgKey+'_iconoKey'];
@@ -138,7 +138,7 @@ function cargarCarteles(){
         var iconImg=document.createElement('img');
         iconImg.src=url;
         iconImg.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%';
-        iconImg.onerror=function(){icoEl.innerHTML='';icoEl.textContent=appCfg[cfgKey+'_icono']||'â­';};
+        iconImg.onerror=function(){icoEl.innerHTML='';icoEl.textContent=appCfg[cfgKey+'_icono']||'⭐';};
         icoEl.appendChild(iconImg);
       }
     } else if(appCfg[cfgKey+'_icono']&&!esImg){
@@ -155,7 +155,7 @@ function cargarCarteles(){
   ]).then(function(results){
     var cfg=results[0]; var appCfg=results[1];
 
-    // ââ Oratorio y Centro Juvenil ââ
+    // ── Oratorio y Centro Juvenil ──
     ['oratorio','centrojuvenil'].forEach(function(sec){
       var idImg=sec==='oratorio'?'cartelOratorio':'cartelCentroJuvenil';
       var imgEl=document.getElementById(idImg);if(!imgEl)return;
@@ -172,7 +172,7 @@ function cargarCarteles(){
       var icoEl=document.getElementById('icono-'+sec);
       aplicarIconoSeccion(icoEl, sec, appCfg);
     });
-    // Mapa de ids de icono/nombre por secciÃ³n dinÃ¡mica
+    // Mapa de ids de icono/nombre por sección dinámica
     var SECCION_IDS={
       somalo:      {icono:'icono-somalo',    nombre:null},
       musicales:   {icono:'icono-musicales', nombre:null},
@@ -186,14 +186,14 @@ function cargarCarteles(){
       var carteles=cfg[sec]||[];
       if(!carteles.length){wrapper.style.display='none';return;}
       wrapper.style.display='';
-      // Actualizar nombre e icono desde appCfg (config) â NO desde cfg (carteles)
+      // Actualizar nombre e icono desde appCfg (config) — NO desde cfg (carteles)
       var ids=SECCION_IDS[sec]||{};
       var icoEl=ids.icono?document.getElementById(ids.icono):null;
       var nomEl=ids.nombre?document.getElementById(ids.nombre):null;
       var cfgKey=sec==='catecumenado'?'catecumenado':sec;
       // Nombre
       if(nomEl&&appCfg[cfgKey+'_nombre']) nomEl.textContent=appCfg[cfgKey+'_nombre'];
-      // Icono (imagen o emoji) + color â usando la funciÃ³n auxiliar
+      // Icono (imagen o emoji) + color — usando la función auxiliar
       aplicarIconoSeccion(icoEl, cfgKey, appCfg);
       // Rellenar el seccion-card-cuerpo (no la cabecera)
       var cuerpo=document.getElementById('cuerpo-'+sec);
@@ -217,7 +217,7 @@ function cargarCarteles(){
           };
           cuerpo.appendChild(img);
         }
-        // Pie: enlace de secciÃ³n (Instagram u otra red) si estÃ¡ configurado
+        // Pie: enlace de sección (Instagram u otra red) si está configurado
         var enlaceSec=cfg[sec+'_enlace']||null;
         if(enlaceSec){
           var pie=document.createElement('a');
@@ -243,7 +243,7 @@ function cargarCanalDenuncias(){
       if(div){
         var enlace=div.querySelector('.legal-enlace-boton');
         var enlaceHtml=enlace?enlace.outerHTML:'';
-        // Dividir por doble salto de línea (sin regex)
+        // Dividir por doble salto de l�nea (sin regex)
         var partes=d.completo.split('\n\n');
         var html='';
         for(var i=0;i<partes.length;i++){
@@ -287,7 +287,7 @@ function cargarComunicados(){
           embed.type='application/pdf';
           embed.style.cssText='width:100%;height:100%;border:none;pointer-events:none';
         } else {
-          // En mÃ³vil iOS/Android el embed PDF no funciona â mostrar icono
+          // En móvil iOS/Android el embed PDF no funciona — mostrar icono
           embed=document.createElement('div');
           embed.style.cssText='width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#f8f8f8;color:#666';
           embed.innerHTML='<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg><span style="font-size:.78rem;font-weight:600;color:#888">Toca para ver</span>';
@@ -304,7 +304,7 @@ function cargarComunicados(){
         var btnDl=document.createElement('a');
         btnDl.href=url;btnDl.download=p.titulo;
         btnDl.style.cssText='background:#2a2a2a;color:#fff;border:none;border-radius:6px;padding:7px 16px;font-size:.85rem;font-weight:700;cursor:pointer;text-decoration:none';
-        btnDl.textContent='â¬ Descargar';
+        btnDl.textContent='⬇ Descargar';
 
         overlay.appendChild(btnVer);overlay.appendChild(btnDl);
         thumbWrap.appendChild(embed);thumbWrap.appendChild(overlay);
@@ -332,7 +332,7 @@ function cargarComunicados(){
         var url=WORKER_URL+'/api/archivo/'+encodeURIComponent(p.key);
         var fecha=new Date(p.fecha).toLocaleDateString('es-ES',{day:'2-digit',month:'short',year:'numeric'});
         var li=document.createElement('li');li.style.cssText='padding:8px 0;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:10px';
-        li.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><a href="'+url+'" target="_blank" style="color:#27a49b;font-weight:600;text-decoration:none;flex:1">'+p.titulo+'</a><a href="'+url+'" download style="color:#888;font-size:.75rem">â¬</a><span style="font-size:.78rem;color:#aaa">'+fecha+'</span>';
+        li.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8102E" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><a href="'+url+'" target="_blank" style="color:#27a49b;font-weight:600;text-decoration:none;flex:1">'+p.titulo+'</a><a href="'+url+'" download style="color:#888;font-size:.75rem">⬇</a><span style="font-size:.78rem;color:#aaa">'+fecha+'</span>';
         ul.appendChild(li);
       });
       if(!listaEl.querySelector('ul'))listaEl.appendChild(ul);
@@ -340,19 +340,19 @@ function cargarComunicados(){
   }).catch(function(){});
 }
 
-/* VÃDEOS DINÃMICOS */
+/* VÍDEOS DINÁMICOS */
 function cargarVideos(){
   fetch(WORKER_URL+'/api/config').then(function(r){return r.json();}).then(function(cfg){
     var videos=cfg.videos||[
       {url:'https://www.youtube.com/watch?v=QTaLz1BatIQ',titulo:'Tutorial Bosconecta'},
-      {url:'https://www.youtube.com/watch?v=mc9eDYibm7Q',titulo:'Recuperar contraseÃ±as'}
+      {url:'https://www.youtube.com/watch?v=mc9eDYibm7Q',titulo:'Recuperar contraseñas'}
     ];
     renderVideos(videos);
   }).catch(function(){
-    // Fallback con los vÃ­deos por defecto
+    // Fallback con los vídeos por defecto
     renderVideos([
       {url:'https://www.youtube.com/watch?v=QTaLz1BatIQ',titulo:'Tutorial Bosconecta'},
-      {url:'https://www.youtube.com/watch?v=mc9eDYibm7Q',titulo:'Recuperar contraseÃ±as'}
+      {url:'https://www.youtube.com/watch?v=mc9eDYibm7Q',titulo:'Recuperar contraseñas'}
     ]);
   });
 }
@@ -360,7 +360,7 @@ function cargarVideos(){
 function renderVideos(videos){
   var cont=document.getElementById('videosInstrucciones');
   if(!cont||!videos.length)return;
-  cont.innerHTML='<h3 style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:14px;text-align:center">ð¹ VÃ­deos de instrucciones</h3>';
+  cont.innerHTML='<h3 style="font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:14px;text-align:center">📹 Vídeos de instrucciones</h3>';
   var grid=document.createElement('div');
   grid.style.cssText='display:flex;flex-wrap:wrap;justify-content:center;gap:10px';
   videos.forEach(function(v){
@@ -369,13 +369,13 @@ function renderVideos(videos){
     a.style.cssText='display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:10px 16px;text-decoration:none;color:#222;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:.2s';
     a.onmouseover=function(){this.style.boxShadow='0 4px 16px rgba(0,0,0,.12)';this.style.borderColor='#C8102E';};
     a.onmouseout=function(){this.style.boxShadow='0 2px 8px rgba(0,0,0,.06)';this.style.borderColor='#e0e0e0';};
-    a.innerHTML='<div style="width:52px;height:52px;background:#C8102E;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M8 5v14l11-7z"/></svg></div><div><div style="font-weight:700;font-size:.9rem;color:#1a1a2e;margin-bottom:3px">'+v.titulo+'</div><div style="font-size:.78rem;color:#888">Ver en YouTube â</div></div>';
+    a.innerHTML='<div style="width:52px;height:52px;background:#C8102E;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M8 5v14l11-7z"/></svg></div><div><div style="font-weight:700;font-size:.9rem;color:#1a1a2e;margin-bottom:3px">'+v.titulo+'</div><div style="font-size:.78rem;color:#888">Ver en YouTube ↗</div></div>';
     grid.appendChild(a);
   });
   cont.appendChild(grid);
 }
 
-/* HERO DINÃMICO */
+/* HERO DINÁMICO */
 function cargarHero(){
   fetch(WORKER_URL+'/api/config').then(function(r){return r.json();}).then(function(cfg){
     if(cfg.heroTitulo){var el=document.getElementById('heroTitulo');if(el)el.textContent=cfg.heroTitulo;}
@@ -439,8 +439,8 @@ cargarVideos();
 cargarHero();
 cargarRedes();
 
-// ââ Reparar emails ofuscados por Cloudflare ââââââââââââââââââââââââââââââ
-// Cloudflare obfusca automÃ¡ticamente emails en el HTML. Esta funciÃ³n los restaura.
+// ── Reparar emails ofuscados por Cloudflare ──────────────────────────────
+// Cloudflare obfusca automáticamente emails en el HTML. Esta función los restaura.
 (function repararEmails() {
   var u = 'clubatalaya';
   var d = 'salesianossantander.org';
@@ -454,7 +454,7 @@ cargarRedes();
     if (a) a.href = mailto;
   });
 
-  // Restaurar enlaces mailto vacÃ­os
+  // Restaurar enlaces mailto vacíos
   document.querySelectorAll('a[href="mailto:"], a[href^="mailto:#"]').forEach(function(a) {
     a.href = mailto;
     if (!a.textContent.includes('@')) a.textContent = email;

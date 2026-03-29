@@ -243,7 +243,7 @@ function cargarCanalDenuncias(){
       if(div){
         var enlace=div.querySelector('.legal-enlace-boton');
         var enlaceHtml=enlace?enlace.outerHTML:'';
-        // Dividir por doble salto de l�nea (sin regex)
+        // Dividir por doble salto de lnea (sin regex)
         var partes=d.completo.split('\n\n');
         var html='';
         for(var i=0;i<partes.length;i++){

@@ -380,9 +380,23 @@ function cargarHero(){
   fetch(WORKER_URL+'/api/config').then(function(r){return r.json();}).then(function(cfg){
     if(cfg.heroTitulo){var el=document.getElementById('heroTitulo');if(el)el.textContent=cfg.heroTitulo;}
     if(cfg.heroTexto){var el2=document.getElementById('heroTexto');if(el2)el2.textContent=cfg.heroTexto;}
+    /* "?v=..." al final de la dirección obliga al navegador a descargar
+       la imagen actual del panel y no una copia antigua guardada en caché. */
+    var sinCache='?v='+Date.now();
     if(cfg.heroImagenKey){
       var hero=document.getElementById('heroImagen');
-      if(hero)hero.style.backgroundImage="url('"+WORKER_URL+"/api/archivo/"+encodeURIComponent(cfg.heroImagenKey)+"')";
+      if(hero)hero.style.backgroundImage="url('"+WORKER_URL+"/api/archivo/"+encodeURIComponent(cfg.heroImagenKey)+sinCache+"')";
+    }
+    /* LOGOTIPO DE LA CABECERA
+       Si en el panel de administración (sección "Logotipo") se ha subido
+       un logo, sustituye al de imagenes/logotipos/ que viene en index.html.
+       Si el panel no tiene logo, se queda el del index.html. */
+    if(cfg.logotipoKey){
+      var logo=document.querySelector('.header-logo img');
+      if(logo){
+        logo.src=WORKER_URL+'/api/archivo/'+encodeURIComponent(cfg.logotipoKey)+sinCache;
+        logo.style.display='';
+      }
     }
   }).catch(function(){});
 }

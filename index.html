@@ -20,6 +20,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
 
+  <!-- Icono de la pestaña del navegador (favicon): símbolo "CA" del club.
+       Para cambiarlo, sustituye el archivo manteniendo el mismo nombre. -->
+  <link rel="icon" type="image/png" href="imagenes/logotipos/favicon-atalaya-64x64.png" />
+
   <!-- Hoja de estilos principal -->
   <link rel="stylesheet" href="css/estilos.css" />
 
@@ -33,14 +37,23 @@
   <header class="header-principal">
     <div class="header-contenedor">
 
-      <!-- Logo del club -->
-      <!-- EDITAR: sustituye "imagenes/logotipos/logo-atalaya-200x200.png"
-           por la ruta real de tu logo cuando lo tengas -->
+      <!-- ── LOGO DEL CLUB (cabecera) ──
+           En la cabecera se usa solo el SÍMBOLO "CA" del logotipo, porque a
+           este tamaño el texto "club atalaya · Salesianos Santander" no se
+           leería (ese texto ya aparece escrito al lado del logo).
+           Archivos disponibles en imagenes/logotipos/:
+             · logo-atalaya-simbolo-200x200.png  → símbolo (el que se usa aquí)
+             · logo-atalaya-completo-400x400.png → logotipo completo con texto
+           EDITAR: para cambiar el logo, sube la imagen nueva a esa carpeta
+           y cambia el nombre del archivo en src="...".
+           El estilo (fondo blanco y esquinas redondeadas) hace que el logo
+           se vea bien sobre cualquier color de cabecera. -->
       <a href="#inicio" class="header-logo">
         <img
-          src="imagenes/logotipos/logo-atalaya-200x200.png"
+          src="imagenes/logotipos/logo-atalaya-simbolo-200x200.png"
           alt="Logo Club Atalaya"
           width="64" height="64"
+          style="background:#fff;border-radius:12px;padding:4px;object-fit:contain;box-sizing:border-box"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
         />
         <!-- Placeholder que aparece si no existe la imagen del logo -->
@@ -538,7 +551,7 @@
           </div>
           <div>
             <h3>Email</h3>
-            <a href="/cdn-cgi/l/email-protection#91f2fde4f3f0e5f0fdf0e8f0d1e2f0fdf4e2f8f0fffee2e2f0ffe5f0fff5f4e3bffee3f6"><span class="__cf_email__" data-cfemail="97f4fbe2f5f6e3f6fbf6eef6d7e4f6fbf2e4fef6f9f8e4e4f6f9e3f6f9f3f2e5b9f8e5f0">[email&#160;protected]</span></a>
+            <a href="mailto:clubatalaya@salesianossantander.org">clubatalaya@salesianossantander.org</a>
           </div>
         </div>
 
@@ -623,7 +636,7 @@
         <h4>Responsable del tratamiento</h4>
         <p>ASOCIACIÓN CLUB ATALAYA SALESIANOS SANTANDER<br />
           Paseo de Altamira, 73 · 39006 Santander<br />
-          Contacto: <a href="/cdn-cgi/l/email-protection#345758415655405558554d557447555851475d555a5b4747555a40555a5051461a5b4653"><span class="__cf_email__" data-cfemail="84e7e8f1e6e5f0e5e8e5fde5c4f7e5e8e1f7ede5eaebf7f7e5eaf0e5eae0e1f6aaebf6e3">[email&#160;protected]</span></a>
+          Contacto: <a href="mailto:clubatalaya@salesianossantander.org">clubatalaya@salesianossantander.org</a>
         </p>
 
         <h4>Finalidad del tratamiento</h4>
@@ -638,8 +651,21 @@
         <h4>Derechos de los interesados</h4>
         <p>Puede ejercer sus derechos de acceso, rectificación, supresión, limitación del tratamiento, portabilidad y oposición dirigiéndose por escrito a la dirección indicada o al correo electrónico de contacto.</p>
         <p>Tiene derecho a presentar una reclamación ante la <strong>Agencia Española de Protección de Datos</strong> (www.aepd.es · C/ Jorge Juan, 6 · 28001 Madrid · Tel. 901 100 099).</p>
-      
-      <p style="margin-top:12px"><a href="https://solitary-waterfall-4e04club-atalaya-api.clubatalaya-18e.workers.dev/api/archivo/proteccion-datos.pdf" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#C8102E;font-weight:600;text-decoration:none;font-size:.9rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Descargar información sobre Protección de Datos (PDF)</a></p>
+
+        <!-- ── DOCUMENTO PDF DE PROTECCIÓN DE DATOS ──
+             El PDF está guardado en la carpeta "documentos" del repositorio:
+               documentos/proteccion_de_datos.pdf
+             PARA ACTUALIZARLO: en GitHub, entra en la carpeta "documentos",
+             pulsa "Add file → Upload files" y sube el PDF nuevo con
+             EXACTAMENTE el mismo nombre (proteccion_de_datos.pdf).
+             No hace falta tocar este código. -->
+        <p style="margin-top:12px">
+          <a href="documentos/proteccion_de_datos.pdf" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:6px;color:#C8102E;font-weight:600;text-decoration:none;font-size:.9rem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Descargar información sobre Protección de Datos (PDF)
+          </a>
+        </p>
     </div>
 
     </div>
@@ -722,12 +748,10 @@
         <p>Paseo de Altamira, 73 · 39006 Santander</p>
       </div>
 
-      <a href="/cdn-cgi/l/email-prohtection#c3a0afb6a1a2b7a2afa2baa283b0a2afa6b0aaa2adacb0b0a2adb7a2ada7a6b1edacb1a4" class="footer-email">
-        <span class="__cf_email__" data-cfemail="157679607774617479746c745566747970667c747b7a6666747b61747b7170673b7a6772">[email&#160;protected]</span>
-      </a>
+      <a href="mailto:clubatalaya@salesianossantander.org" class="footer-email">clubatalaya@salesianossantander.org</a>
 
     </div>
   </footer>
 
-
-  <!-- ═══════════════════════════════════
+</body>
+</html>
